@@ -1,0 +1,1 @@
+snakemake -c 40 -s 01_align.smk --cluster-generic-submit-cmd "qsub -N sv-benchmarking_alignment -pe 40 -q slave -o export/home/jeffrey/Documents/sv-benchmarking/logs/job-01_alignment.output.log -e export/home/jeffrey/Documents/sv-benchmarking/logs/job-01_alignment.error.log -cwd" --cluster-generic-status-cmd "qstat -f" -j 1 --use-conda

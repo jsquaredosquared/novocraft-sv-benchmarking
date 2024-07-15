@@ -1,0 +1,51 @@
+Building DAG of jobs...
+Traceback (most recent call last):
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/cli.py", line 2103, in args_to_api
+    dag_api.execute_workflow(
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/api.py", line 594, in execute_workflow
+    workflow.execute(
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/workflow.py", line 1122, in execute
+    self.dag.create_conda_envs()
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/dag.py", line 452, in create_conda_envs
+    env.create(self.workflow.dryrun)
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 392, in create
+    pin_file = self.pin_file
+               ^^^^^^^^^^^^^
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake_interface_common/utils.py", line 33, in __get__
+    value = self.method(instance)
+            ^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 102, in pin_file
+    f".{self.conda.platform}.pin.txt"
+        ^^^^^^^^^^
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake_interface_common/utils.py", line 33, in __get__
+    value = self.method(instance)
+            ^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 95, in conda
+    return Conda(
+           ^^^^^^
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 654, in __init__
+    shell.check_output(self._get_cmd("conda info --json"), text=True)
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/site-packages/snakemake/shell.py", line 64, in check_output
+    return sp.check_output(cmd, shell=True, executable=executable, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/home/jeffrey/micromamba/envs/snakemake/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+
+subprocess.CalledProcessError: Command 'conda info --json' returned non-zero exit status 127.
+
