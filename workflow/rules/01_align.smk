@@ -1,11 +1,12 @@
 configfile: "../../config/config.yaml"
 
 
-INPUT_PREFIX = config["prefix"]
-OUTPUT_PREFIX = config["results"]
-SAMPLES = config["fastq"]
+INPUT_PREFIX = config["input_prefix"]
+OUTPUT_PREFIX = config["output_prefix"]
+SAMPLES = config["samples"]
 ALIGNERS = config["aligners"]
 REFERENCE = config["reference"]
+NOVOINDEX = config["novoindex"]
 
 
 def get_input_fastqs(wildcards):
@@ -14,27 +15,25 @@ def get_input_fastqs(wildcards):
 
 rule all:
     input:
-        expand("{sample}.{aligner}.bam", sample=SAMPLES, aligner=ALIGNERS),
+        expand("resources/bam-files/{sample}.{aligner}.bam", sample=SAMPLES, aligner=ALIGNERS),
 
 
 rule align_with_bwa_mem:
     input:
-        get_input_fastqs,
+        get_input_fastqs
     output:
-        "{sample}.bwa-mem.bam",
+        "resources/bam-files/{sample}.bwa-mem.bam",
     log:
         "../../logs/align_{sample}_with_bwa-mem.log"
-    params:
-        reference=REFERENCE,
-        bwa_mem=ALIGNERS["bwa-mem"],
-        samtools="docker run staphb/samtools"
-    threads:
+    threads: 32
+    conda:
+        "../envs/bwa_env.yaml"
     shell:
-        "({bwa_mem} mem "
-        "-t ?? "
-        "{reference} "
+        "bwa-mem2 mem "
+        "-t 32 "
+        f"{REFERENCE} "
         "{input} | "
-        "{samtools} sort -o {output} -@??) "
+        "samtools sort -o {output} -@32) "
         "2> {log}"
 
 
@@ -42,15 +41,15 @@ rule align_with_novoalign:
     input:
         get_input_fastqs,
     output:
-        "{sample}.novoalign.bam",
+        "resources/bam-files/{sample}.novoalign.bam",
     log:
         "../../logs/align_{sample}_with_novoalign.log"
     params:
-        novoalign=ALIGNERS["novoalign"],
+        ref_nix = f"{REFERENCE}.nix"
     shell:
-        "{novoalign} "
+        f"{ALIGNERS["novoalign"]} "
         "-i 400,100 "
-        "-d ???index??? "
+        f"-d {NOVOINDEX} "
         "-f {input} "
         "-o BAM "
         "> {output} "
