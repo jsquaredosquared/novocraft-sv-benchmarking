@@ -1,14 +1,15 @@
 input_prefix: "/export/Projects/2024-SVCalling/GIAB-AltScaffold"
-output_prefix: "/export/home/jeffrey/Documents/sv-benchmarking/results"
+output_prefix: "/export/home/jeffrey/Documents/sv-benchmarking/outputs"
 
 reference: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz"
+
+novoindex: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.nix"
 
 aligners: 
   bwa-mem: "docker run dceoy/bwa-mem2"
   novoalign: "/export/home/jeffrey/.local/bin/novocraft/novoalign"
 
-fastq:
+samples:
   HG001:
     - "V300029232_L04_read_1.fq.gz"
     - "V300029232_L04_read_2.fq.gz"
-
