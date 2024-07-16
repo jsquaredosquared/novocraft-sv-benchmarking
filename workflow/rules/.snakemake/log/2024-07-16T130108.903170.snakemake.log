@@ -1,0 +1,71 @@
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided remote nodes: 2
+Job stats:
+job                     count
+--------------------  -------
+align_with_bwa_mem          1
+align_with_novoalign        1
+all                         1
+total                       3
+
+Select jobs to execute...
+Execute 2 jobs...
+
+[Tue Jul 16 13:01:42 2024]
+rule align_with_novoalign:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.bam
+    log: ../../logs/align_HG001_with_novoalign.log
+    jobid: 2
+    reason: Missing output files: ../../resources/bam-files/HG001.novoalign.bam
+    wildcards: sample=HG001
+    threads: 20
+    resources: tmpdir=<TBD>
+
+[Tue Jul 16 13:01:51 2024]
+Error in rule align_with_novoalign:
+    message: Error submitting jobscript (exit code 1):
+Your job 1943 ("sv-benchmarking_alignment") has been submitted
+For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 2
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.bam
+    log: ../../logs/align_HG001_with_novoalign.log (check log file(s) for error details)
+    conda-env: /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/18f90908a2ea392db940975d1cadf1c1_
+    shell:
+        /export/home/jeffrey/.local/bin/novocraft/novoalign -i 400,100 -d /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.nix -f /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz -o BAM | samtools sort -o ../../resources/bam-files/HG001.novoalign.bam -@ 4 2> ../../logs/align_HG001_with_novoalign.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+
+[Tue Jul 16 13:01:51 2024]
+rule align_with_bwa_mem:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.bwa-mem.bam
+    log: ../../logs/align_HG001_with_bwa-mem.log
+    jobid: 1
+    reason: Missing output files: ../../resources/bam-files/HG001.bwa-mem.bam
+    wildcards: sample=HG001
+    threads: 28
+    resources: tmpdir=<TBD>
+
+[Tue Jul 16 13:02:05 2024]
+Error in rule align_with_bwa_mem:
+    message: Error submitting jobscript (exit code 1):
+Your job 1944 ("sv-benchmarking_alignment") has been submitted
+For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 1
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.bwa-mem.bam
+    log: ../../logs/align_HG001_with_bwa-mem.log (check log file(s) for error details)
+    conda-env: /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/18f90908a2ea392db940975d1cadf1c1_
+    shell:
+        bwa-mem2 mem -t 20 /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz | samtools sort -o ../../resources/bam-files/HG001.bwa-mem.bam -@ 4 2> ../../logs/align_HG001_with_bwa-mem.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-07-16T130108.903170.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

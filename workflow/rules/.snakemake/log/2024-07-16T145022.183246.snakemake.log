@@ -1,0 +1,7 @@
+Building DAG of jobs...
+MissingInputException in rule sort_sam_to_bam in file /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/01_align.smk, line 59:
+Missing input files for rule sort_sam_to_bam:
+    output: ../../resources/bam-files/HG001.bwa-mem.bam
+    wildcards: sample=HG001, aligner=bwa-mem
+    affected files:
+        ../../resources/bam-files/*.sam

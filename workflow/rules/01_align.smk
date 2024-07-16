@@ -15,25 +15,25 @@ def get_input_fastqs(wildcards):
 
 rule all:
     input:
-        expand("../../resources/bam-files/{sample}.{aligner}.bam", sample=SAMPLES, aligner=ALIGNERS),
+        expand("../../resources/bam-files/{sample}.{aligner}_sorted.bam", sample=SAMPLES, aligner=ALIGNERS),
 
 
 rule align_with_bwa_mem:
     input:
         get_input_fastqs
     output:
-        "../../resources/bam-files/{sample}.bwa-mem.bam",
+        temp("../../resources/bam-files/{sample}.bwa-mem.sam"),
     log:
         "../../logs/align_{sample}_with_bwa-mem.log"
-    threads: 28
-    conda:
-        "../envs/bwa_env.yaml"
+    threads: 24
+    container:
+        "docker://dceoy/bwa-mem2:latest"
     shell:
         "bwa-mem2 mem "
-        "-t 20 "
+        "-t 24 "
         f"{REFERENCE} "
-        "{input} | "
-        "samtools sort -o {output} -@ 4 "
+        "{input} "
+        "> {output} "
         "2> {log}"
 
 
@@ -41,20 +41,31 @@ rule align_with_novoalign:
     input:
         get_input_fastqs,
     output:
-        "../../resources/bam-files/{sample}.novoalign.bam",
+        temp("../../resources/bam-files/{sample}.novoalign.sam"),
     log:
         "../../logs/align_{sample}_with_novoalign.log"
     params:
         ref_nix = f"{REFERENCE}.nix"
-    conda:
-        "../envs/bwa_env.yaml"
-    threads: 20
+    threads: 24
     shell:
         f"{ALIGNERS["novoalign"]} "
         "-i 400,100 "
         f"-d {NOVOINDEX} "
         "-f {input} "
-        "-o BAM | "
-        "samtools sort -o {output} -@ 4 "
+        "-o SAM "
+        "{output} "
         "2> {log}"
+
+rule sort_sam_to_bam:
+    input:
+        "../../resources/bam-files/{sample}.{aligner}.sam"
+    output:
+        "../../resources/bam-files/{sample}.{aligner}_sorted.bam"
+    container:
+        "docker://staphb/samtools:latest"
+    log:
+        "../../logs/sort_{sample}_{aligner}_sam_to_bam.log"
+    threads: 16
+    shell:
+        "samtools sort {input} -o {output} -@ 16 2> {log}"
 
