@@ -1,0 +1,50 @@
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cores: 40
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+align_with_bwa_mem          1
+align_with_novoalign        1
+all                         1
+total                       3
+
+Select jobs to execute...
+Execute 2 jobs...
+
+[Tue Jul 16 09:39:18 2024]
+localrule align_with_bwa_mem:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: resources/bam-files/HG001.bwa-mem.bam
+    log: ../../logs/align_HG001_with_bwa-mem.log
+    jobid: 1
+    reason: Missing output files: resources/bam-files/HG001.bwa-mem.bam
+    wildcards: sample=HG001
+    threads: 32
+    resources: tmpdir=/tmp
+
+Activating conda environment: .snakemake/conda/18f90908a2ea392db940975d1cadf1c1_
+
+[Tue Jul 16 09:39:18 2024]
+localrule align_with_novoalign:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: resources/bam-files/HG001.novoalign.bam
+    log: ../../logs/align_HG001_with_novoalign.log
+    jobid: 2
+    reason: Missing output files: resources/bam-files/HG001.novoalign.bam
+    wildcards: sample=HG001
+    resources: tmpdir=/tmp
+
+[Tue Jul 16 09:41:34 2024]
+Error in rule align_with_novoalign:
+    jobid: 2
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: resources/bam-files/HG001.novoalign.bam
+    log: ../../logs/align_HG001_with_novoalign.log (check log file(s) for error details)
+    shell:
+        /export/home/jeffrey/.local/bin/novocraft/novoalign -i 400,100 -d /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.nix -f /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz -o BAM | samtools sort -o resources/bam-files/HG001.novoalign.bam -@32 2> ../../logs/align_HG001_with_novoalign.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Terminating processes on user request, this might take some time.

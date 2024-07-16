@@ -1,9 +1,0 @@
-Looking to launch executable "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/18f90908a2ea392db940975d1cadf1c1_/bin/bwa-mem2.avx2", simd = .avx2
-Launching executable "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/18f90908a2ea392db940975d1cadf1c1_/bin/bwa-mem2.avx2"
------------------------------
-Executing in AVX2 mode!!
------------------------------
-* SA compression enabled with xfactor: 8
-* Ref file: /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz
-* Entering FMI_search
-ERROR! Unable to open the file: /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz.bwt.2bit.64
