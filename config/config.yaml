@@ -3,8 +3,6 @@ output_prefix: "/export/home/jeffrey/Documents/sv-benchmarking/outputs"
 
 reference: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta"
 
-novoindex: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.nix"
-
 aligners: 
   bwa-mem: "docker run dceoy/bwa-mem2"
   novoalign: "/export/home/jeffrey/.local/bin/novocraft/novoalign"
