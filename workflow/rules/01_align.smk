@@ -30,7 +30,7 @@ rule align_with_bwa_mem:
         "../envs/bwa_env.yaml"
     shell:
         "bwa-mem2 mem "
-        "-t 24 "
+        "-t 20 "
         f"{REFERENCE} "
         "{input} | "
         "samtools sort -o {output} -@ 4 "
