@@ -1,0 +1,40 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 2
+Job stats:
+job                     count
+--------------------  -------
+align_with_bwa_mem          1
+align_with_novoalign        1
+all                         1
+sort_sam_to_bam             2
+total                       5
+
+Select jobs to execute...
+Execute 2 jobs...
+
+[Thu Jul 18 10:13:12 2024]
+rule align_with_novoalign:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.sam
+    log: ../../logs/align_HG001_with_novoalign.log
+    jobid: 4
+    reason: Missing output files: ../../resources/bam-files/HG001.novoalign.sam
+    wildcards: sample=HG001
+    threads: 24
+    resources: tmpdir=<TBD>
+
+Submitted job 4 with external jobid 'Your job 2147 ("sv-benchmarking_alignment") has been submitted'.
+
+[Thu Jul 18 10:18:19 2024]
+rule align_with_bwa_mem:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.bwa-mem.sam
+    log: ../../logs/align_HG001_with_bwa-mem.log
+    jobid: 2
+    reason: Missing output files: ../../resources/bam-files/HG001.bwa-mem.sam
+    wildcards: sample=HG001
+    threads: 24
+    resources: tmpdir=<TBD>
+
+Submitted job 2 with external jobid 'Your job 2148 ("sv-benchmarking_alignment") has been submitted'.

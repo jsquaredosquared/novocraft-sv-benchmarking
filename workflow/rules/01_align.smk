@@ -6,7 +6,6 @@ OUTPUT_PREFIX = config["output_prefix"]
 SAMPLES = config["samples"]
 ALIGNERS = config["aligners"]
 REFERENCE = config["reference"]
-NOVOINDEX = config["novoindex"]
 
 
 def get_input_fastqs(wildcards):
@@ -31,7 +30,7 @@ rule align_with_bwa_mem:
         "../../logs/align_{sample}_with_bwa-mem.log",
     threads: 24
     shell:
-        "docker run -V /export:/export "
+        "docker run -v /export:/export "
         "dceoy/bwa-mem2 mem "
         "-t 24 "
         f"{REFERENCE} "
@@ -65,8 +64,8 @@ rule sort_sam_to_bam:
         "../../resources/bam-files/{sample}.{aligner}_sorted.bam",
     log:
         "../../logs/sort_{sample}_{aligner}_sam_to_bam.log",
-    threads: 16
+    threads: 6
     shell:
-        "docker run -V /export:/export "
-        "staphb/samtools sort {input} -o {output} -@ 16 "
+        "docker run -v /export:/export "
+        "staphb/samtools sort {input} -o {output} -@ 6 "
         "2> {log}"

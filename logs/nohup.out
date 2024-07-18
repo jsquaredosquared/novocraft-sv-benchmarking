@@ -1,2 +1,3 @@
 Your job 1890 ("novoindex_giab_ref") has been submitted
 Job 1890 exited with exit code 0.
+Error: Snakefile "01_align.smk" not found.

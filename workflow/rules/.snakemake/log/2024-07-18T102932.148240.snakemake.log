@@ -24,7 +24,6 @@ rule align_with_novoalign:
     threads: 24
     resources: tmpdir=<TBD>
 
-Job 2149 exited with exit code 1.
 [Thu Jul 18 10:29:41 2024]
 Error in rule align_with_novoalign:
     message: Error submitting jobscript (exit code 1):
@@ -50,7 +49,6 @@ rule align_with_bwa_mem:
     threads: 24
     resources: tmpdir=<TBD>
 
-Job 2150 exited with exit code 1.
 [Thu Jul 18 10:29:54 2024]
 Error in rule align_with_bwa_mem:
     message: Error submitting jobscript (exit code 1):

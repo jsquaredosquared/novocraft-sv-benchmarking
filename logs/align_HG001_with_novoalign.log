@@ -1,0 +1,2 @@
+Problem processing command line arguments: Expecting @RG record with -o SAM/BAM option. at arg[10 of 11] '../../resources/bam-files/HG001.novoalign.sam'
+For full list of options enter /export/home/jeffrey/.local/bin/novocraft/novoalign --help
