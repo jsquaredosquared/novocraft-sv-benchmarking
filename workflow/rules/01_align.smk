@@ -30,10 +30,9 @@ rule align_with_bwa_mem:
     log:
         "../../logs/align_{sample}_with_bwa-mem.log",
     threads: 24
-    container:
-        "docker://dceoy/bwa-mem2:latest"
     shell:
-        "bwa-mem2 mem "
+        "docker run -V /export:/export "
+        "dceoy/bwa-mem2 mem "
         "-t 24 "
         f"{REFERENCE} "
         "{input} "
@@ -64,10 +63,10 @@ rule sort_sam_to_bam:
         "../../resources/bam-files/{sample}.{aligner}.sam",
     output:
         "../../resources/bam-files/{sample}.{aligner}_sorted.bam",
-    container:
-        "docker://staphb/samtools:latest"
     log:
         "../../logs/sort_{sample}_{aligner}_sam_to_bam.log",
     threads: 16
     shell:
-        "samtools sort {input} -o {output} -@ 16 2> {log}"
+        "docker run -V /export:/export "
+        "staphb/samtools sort {input} -o {output} -@ 16 "
+        "2> {log}"
