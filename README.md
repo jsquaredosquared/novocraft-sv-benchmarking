@@ -13,4 +13,4 @@ This repository contains a Snakemake workflow used to compare the performance of
 
 ## Acknowledgements
 
-This work was part of my internship at Novocraft Technologies Sdn Bhd (July 2024 - September 2024).
+This work was part of my internship at [Novocraft](novocraft.com) (July 2024 - September 2024).
