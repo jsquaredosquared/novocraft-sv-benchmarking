@@ -6,8 +6,6 @@ OUTPUT_PREFIX = config["output_prefix"]
 SAMPLES = config["samples"]
 ALIGNERS = config["aligners"]
 REFERENCE = config["reference"]
-NOVOINDEX = config["novoindex"]
-
 
 def get_input_fastqs(wildcards):
     return [f"{INPUT_PREFIX}/{fastq}" for fastq in SAMPLES[wildcards.sample]]
@@ -30,8 +28,8 @@ rule align_with_bwa_mem:
     log:
         "../../logs/align_{sample}_with_bwa-mem.log",
     threads: 24
-    container:
-        "docker://dceoy/bwa-mem2:latest"
+    conda:
+        "../envs/alignment_env.yaml"
     shell:
         "bwa-mem2 mem "
         "-t 24 "
@@ -54,8 +52,8 @@ rule align_with_novoalign:
         "-i 400,100 "
         f"-d {REFERENCE}.nix "
         "-f {input} "
-        "-o SAM "
-        "{output} "
+        "-o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' "
+        "> {output} "
         "2> {log}"
 
 
@@ -64,10 +62,10 @@ rule sort_sam_to_bam:
         "../../resources/bam-files/{sample}.{aligner}.sam",
     output:
         "../../resources/bam-files/{sample}.{aligner}_sorted.bam",
-    container:
-        "docker://staphb/samtools:latest"
+    conda:
+        "../envs/alignment_env.yaml"
     log:
         "../../logs/sort_{sample}_{aligner}_sam_to_bam.log",
-    threads: 16
+    threads: 6
     shell:
-        "samtools sort {input} -o {output} -@ 16 2> {log}"
+        "samtools sort {input} -o {output} -@ 6 2> {log}"

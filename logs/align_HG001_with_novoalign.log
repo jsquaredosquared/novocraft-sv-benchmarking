@@ -1,0 +1,12 @@
+# novoalign (AVX) (V4.04.01 - Build Feb 27 2024 @ 15:24:28) - A short read aligner with qualities.
+# (C) 2008-2018 Novocraft Technologies Sdn Bhd.
+# License file: /export/home/jeffrey/.local/bin/novocraft/novoalign.lic
+# Licensed to Novocraft Technologies Sdn Bhd
+#  novoalign -i 400,100 -d /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.nix -f /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz -o SAM "@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv"
+# Default Options:  -g 40 -x 2 --matchReward 4 --softclip 40,25 -H 5 -t 0,3.0 --hlimit 8 -v 150 -r Random
+# System 40 CPU Threads, 62G Bytes RAM
+# Starting at Thu Jul 18 12:08:27 2024
+# Interpreting input files as Sanger FASTQ.
+# Index Build Version: 4.4
+#   Hash length:   15
+#     Step size:    2

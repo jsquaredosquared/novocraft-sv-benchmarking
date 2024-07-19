@@ -1,0 +1,176 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Singularity containers: ignored
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Jul 18 11:35:43 2024]
+localrule align_with_bwa_mem:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.bwa-mem.sam
+    log: ../../logs/align_HG001_with_bwa-mem.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=HG001
+    threads: 24
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=242458, disk_mib=231226, tmpdir=/tmp/2151.1.slave.q
+
+[Thu Jul 18 11:35:43 2024]
+Error in rule align_with_bwa_mem:
+    jobid: 0
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.bwa-mem.sam
+    log: ../../logs/align_HG001_with_bwa-mem.log (check log file(s) for error details)
+    shell:
+        bwa-mem2 mem -t 24 /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz > ../../resources/bam-files/HG001.bwa-mem.sam 2> ../../logs/align_HG001_with_bwa-mem.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job align_with_bwa_mem since they might be corrupted:
+../../resources/bam-files/HG001.bwa-mem.sam
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Storing output in storage.
+WorkflowError:
+At least one job did not complete successfully.
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Singularity containers: ignored
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Jul 18 11:35:56 2024]
+localrule align_with_novoalign:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.sam
+    log: ../../logs/align_HG001_with_novoalign.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=HG001
+    threads: 24
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=242458, disk_mib=231226, tmpdir=/tmp/2152.1.slave.q
+
+[Thu Jul 18 11:35:56 2024]
+Error in rule align_with_novoalign:
+    jobid: 0
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.sam
+    log: ../../logs/align_HG001_with_novoalign.log (check log file(s) for error details)
+    shell:
+        /export/home/jeffrey/.local/bin/novocraft/novoalign -i 400,100 -d /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.nix -f /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz -o SAM ../../resources/bam-files/HG001.novoalign.sam 2> ../../logs/align_HG001_with_novoalign.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Storing output in storage.
+WorkflowError:
+At least one job did not complete successfully.
+Building DAG of jobs...
+WorkflowError:
+The apptainer or singularity command has to be available in order to use apptainer/singularity integration.
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Jul 18 11:58:26 2024]
+localrule align_with_novoalign:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.sam
+    log: ../../logs/align_HG001_with_novoalign.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=HG001
+    threads: 24
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=242458, disk_mib=231226, tmpdir=/tmp/2154.1.slave.q
+
+[Thu Jul 18 11:58:26 2024]
+Error in rule align_with_novoalign:
+    jobid: 0
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.sam
+    log: ../../logs/align_HG001_with_novoalign.log (check log file(s) for error details)
+    shell:
+        /export/home/jeffrey/.local/bin/novocraft/novoalign -i 400,100 -d /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.nix -f /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz -o SAM '@RG	ID:V3	SM:NA12878	PL:ILLUMINA	LB:sv' ../../resources/bam-files/HG001.novoalign.sam 2> ../../logs/align_HG001_with_novoalign.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Storing output in storage.
+WorkflowError:
+At least one job did not complete successfully.
+Building DAG of jobs...
+/bin/bash: conda: command not found
+Traceback (most recent call last):
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/cli.py", line 2103, in args_to_api
+    dag_api.execute_workflow(
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/api.py", line 594, in execute_workflow
+    workflow.execute(
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/workflow.py", line 1122, in execute
+    self.dag.create_conda_envs()
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/dag.py", line 452, in create_conda_envs
+    env.create(self.workflow.dryrun)
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 392, in create
+    pin_file = self.pin_file
+               ^^^^^^^^^^^^^
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake_interface_common/utils.py", line 33, in __get__
+    value = self.method(instance)
+            ^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 102, in pin_file
+    f".{self.conda.platform}.pin.txt"
+        ^^^^^^^^^^
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake_interface_common/utils.py", line 33, in __get__
+    value = self.method(instance)
+            ^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 95, in conda
+    return Conda(
+           ^^^^^^
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/deployment/conda.py", line 654, in __init__
+    shell.check_output(self._get_cmd("conda info --json"), text=True)
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/site-packages/snakemake/shell.py", line 64, in check_output
+    return sp.check_output(cmd, shell=True, executable=executable, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/export/git/Programs/Utilities/miniforge3/envs/jeffrey-base/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+
+subprocess.CalledProcessError: Command 'conda info --json' returned non-zero exit status 127.
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Jul 18 12:06:41 2024]
+localrule align_with_novoalign:
+    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
+    output: ../../resources/bam-files/HG001.novoalign.sam
+    log: ../../logs/align_HG001_with_novoalign.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=HG001
+    threads: 24
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=242458, disk_mib=231226, tmpdir=/tmp/2156.1.slave.q
+
