@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This repository contains a Snakemake workflow used to compare the performance of SV callers using srWGS BAM files produced by different aligners. Currently it is being designed to compare SV calls by Manta on BAM files aligned by NovoAlign and BWA-MEM2, although it could be extended to compare other SV callers or aligners.
+This repository contains a Snakemake workflow used to compare the performance of SV callers when different short-read aligners are used. Currently it is being designed to compare SV calls by Manta on BAM files aligned with NovoAlign and BWA-MEM2, although it could be extended to compare other SV callers or aligners.
+
+If NovoAlign performs well, an SV-calling pipeline could potentially be incorporated into Novocraft's products.
 
 ## Roadmap
 
