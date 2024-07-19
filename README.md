@@ -6,10 +6,10 @@ This repository contains a Snakemake workflow used to compare the performance of
 
 ## Roadmap
 
-- [] Align the FASTQ reads using the different aligners.
-- [] Call the structural variants on the different BAM files using the SV caller(s).
-- [] Compare the SV calls to the truth set to determine performance characteristics (e.g., F score).
-- [] Compare the results for each aligner.
+- [ ] Align the FASTQ reads using the different aligners.
+- [ ] Call the structural variants on the different BAM files using the SV caller(s).
+- [ ] Compare the SV calls to the truth set to determine performance characteristics (e.g., F score).
+- [ ] Compare the results for each aligner.
 
 ## Acknowledgements
 
