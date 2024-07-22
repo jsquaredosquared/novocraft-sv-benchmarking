@@ -7,6 +7,7 @@ SAMPLES = config["samples"]
 ALIGNERS = config["aligners"]
 REFERENCE = config["reference"]
 
+
 def get_input_fastqs(wildcards):
     return [f"{INPUT_PREFIX}/{fastq}" for fastq in SAMPLES[wildcards.sample]]
 
@@ -20,41 +21,24 @@ rule all:
         ),
 
 
-rule align_with_bwa_mem:
+rule align:
     input:
         get_input_fastqs,
     output:
-        temp("../../resources/bam-files/{sample}.bwa-mem.sam"),
+        temp("../../resources/bam-files/{sample}.{aligner}.sam"),
     log:
-        "../../logs/align_{sample}_with_bwa-mem.log",
+        "../../logs/align_{sample}_with_{aligner}.log",
     threads: 24
-    conda:
-        "../envs/alignment_env.yaml"
-    shell:
-        "bwa-mem2 mem "
-        "-t 24 "
-        f"{REFERENCE} "
-        "{input} "
-        "> {output} "
-        "2> {log}"
-
-
-rule align_with_novoalign:
-    input:
-        get_input_fastqs,
-    output:
-        temp("../../resources/bam-files/{sample}.novoalign.sam"),
-    log:
-        "../../logs/align_{sample}_with_novoalign.log",
-    threads: 24
-    shell:
-        f"{ALIGNERS["novoalign"]} "
-        "-i 400,100 "
-        f"-d {REFERENCE}.nix "
-        "-f {input} "
-        "-o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' "
-        "> {output} "
-        "2> {log}"
+    run:
+        match wildcards.aligner:
+            case "bwa-mem":
+                shell(
+                    f"bwa-mem2 mem -t 24 {REFERENCE} {{input}} > {{output}} 2> {{log}}"
+                )
+            case "novoalign":
+                shell(
+                    f"{ALIGNERS["novoalign"]} -i 400,100 -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
+                )
 
 
 rule sort_sam_to_bam:

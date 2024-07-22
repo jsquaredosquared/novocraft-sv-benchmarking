@@ -52,3 +52,14 @@ rule align_with_novoalign:
     threads: 24
     resources: tmpdir=<TBD>
 
+Submitted job 4 with external jobid 'Your job 2156 ("sv-benchmarking_alignment") has been submitted'.
+Removing output files of failed job align_with_bwa_mem since they might be corrupted:
+../../resources/bam-files/HG001.bwa-mem.sam
+[Sat Jul 20 01:31:06 2024]
+Finished job 4.
+1 of 5 steps (20%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-07-18T120800.538290.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
