@@ -1,0 +1,1 @@
+docker run -v /export:/export staphb/samtools samtools sort /export/home/jeffrey/Documents/sv-benchmarking/resources/alignment-files/HG001.bwa-mem.sam -o /export/home/jeffrey/Documents/sv-benchmarking/resources/alignment-files/HG001.bwa-mem_sorted.cram -@ 30

@@ -15,7 +15,7 @@ def get_input_fastqs(wildcards):
 rule all:
     input:
         expand(
-            "../../resources/bam-files/{sample}.{aligner}_sorted.bam",
+            "../../resources/alignment-files/{sample}.{aligner}_sorted.bam",
             sample=SAMPLES,
             aligner=ALIGNERS,
         ),
@@ -25,7 +25,7 @@ rule align:
     input:
         get_input_fastqs,
     output:
-        temp("../../resources/bam-files/{sample}.{aligner}.sam"),
+        temp("../../resources/alignment-files/{sample}.{aligner}.sam"),
     log:
         "../../logs/align_{sample}_with_{aligner}.log",
     threads: 24
@@ -43,11 +43,23 @@ rule align:
 
 rule sort_sam_to_cram:
     input:
-        "../../resources/bam-files/{sample}.{aligner}.sam",
+        "../../resources/alignment-files/{sample}.{aligner}.sam",
     output:
-        "../../resources/bam-files/{sample}.{aligner}_sorted.cram",
+        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram",
     log:
         "../../logs/sort_{sample}_{aligner}_sam_to_cram.log",
     threads: 16
     shell:
         "samtools sort {input} -o {output} -@ 16 2> {log}"
+        
+
+rule index_cram_file:
+    input:
+        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram"
+    output:
+        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram.crai"
+    log:
+        "../../logs/index_{sample}.{aligner}_cram.log"
+    threads: 16
+    shell:
+        "samtools index {output} -@ 16"
