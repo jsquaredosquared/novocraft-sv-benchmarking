@@ -28,6 +28,8 @@ rule align_with_bwa_mem:
         temp("../../resources/alignment-files/{sample}.{aligner}.sam"),
     log:
         "../../logs/align_{sample}_with_{aligner}.log",
+    conda:
+        "../envs/alignment_env.yaml"
     threads: 24
     shell:
         f"bwa-mem2 mem -t 24 {REFERENCE} {{input}} > {{output}} 2> {{log}}"
@@ -52,6 +54,8 @@ rule sort_sam_to_cram:
     log:
         "../../logs/sort_{sample}_{aligner}_sam_to_cram.log",
     threads: 16
+    conda:
+        "../envs/alignment_env.yaml"
     shell:
         "samtools sort {input} -o {output} -@ 16 2> {log}"
         
@@ -64,5 +68,7 @@ rule index_cram_file:
     log:
         "../../logs/index_{sample}.{aligner}_cram.log"
     threads: 16
+    conda:
+        "../envs/alignment_env.yaml"
     shell:
         "samtools index {output} -@ 16"
