@@ -21,7 +21,19 @@ rule all:
         ),
 
 
-rule align:
+rule align_with_bwa_mem:
+    input:
+        get_input_fastqs,
+    output:
+        temp("../../resources/alignment-files/{sample}.{aligner}.sam"),
+    log:
+        "../../logs/align_{sample}_with_{aligner}.log",
+    threads: 24
+    shell:
+        f"bwa-mem2 mem -t 24 {REFERENCE} {{input}} > {{output}} 2> {{log}}"
+
+
+rule align_with_novoalign:
     input:
         get_input_fastqs,
     output:
@@ -30,16 +42,7 @@ rule align:
         "../../logs/align_{sample}_with_{aligner}.log",
     threads: 24
     run:
-        match wildcards.aligner:
-            case "bwa-mem":
-                shell(
-                    f"bwa-mem2 mem -t 24 {REFERENCE} {{input}} > {{output}} 2> {{log}}"
-                )
-            case "novoalign":
-                shell(
-                    f"{ALIGNERS["novoalign"]} -i 400,100 -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
-                )
-
+        f"{ALIGNERS["novoalign"]} -i 400,100 -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
 
 rule sort_sam_to_cram:
     input:
