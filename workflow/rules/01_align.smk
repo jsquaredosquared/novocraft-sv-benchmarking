@@ -41,15 +41,13 @@ rule align:
                 )
 
 
-rule sort_sam_to_bam:
+rule sort_sam_to_cram:
     input:
         "../../resources/bam-files/{sample}.{aligner}.sam",
     output:
-        "../../resources/bam-files/{sample}.{aligner}_sorted.bam",
-    conda:
-        "../envs/alignment_env.yaml"
+        "../../resources/bam-files/{sample}.{aligner}_sorted.cram",
     log:
-        "../../logs/sort_{sample}_{aligner}_sam_to_bam.log",
-    threads: 6
+        "../../logs/sort_{sample}_{aligner}_sam_to_cram.log",
+    threads: 16
     shell:
-        "samtools sort {input} -o {output} -@ 6 2> {log}"
+        "samtools sort {input} -o {output} -@ 16 2> {log}"

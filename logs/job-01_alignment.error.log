@@ -174,3 +174,7 @@ localrule align_with_novoalign:
     threads: 24
     resources: mem_mb=8000, mem_mib=7630, disk_mb=242458, disk_mib=231226, tmpdir=/tmp/2156.1.slave.q
 
+[Sat Jul 20 01:28:14 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.
