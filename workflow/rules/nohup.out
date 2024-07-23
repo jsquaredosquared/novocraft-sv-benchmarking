@@ -1,65 +1,164 @@
 Building DAG of jobs...
-Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
-Using shell: /usr/bin/bash
-Provided remote nodes: 2
-Job stats:
-job                     count
---------------------  -------
-align_with_bwa_mem          1
-align_with_novoalign        1
-all                         1
-sort_sam_to_bam             2
-total                       5
+Creating conda environment ../envs/dysgu_env.yaml...
+Downloading and installing remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/../envs/dysgu_env.yaml:
+Command:
+mamba env create --quiet --no-default-packages --file "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/87ca9aea2985fe3cc8aaf094d1be430e_.yaml" --prefix "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/87ca9aea2985fe3cc8aaf094d1be430e_"
+Output:
+Channels:
+ - bioconda
+ - conda-forge
+ - nodefaults
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+failed
+Channels:
+ - bioconda
+ - conda-forge
+ - nodefaults
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+warning  libmamba Problem type not implemented SOLVER_RULE_STRICT_REPO_PRIORITY
+failed
 
-Select jobs to execute...
-Execute 2 jobs...
+LibMambaUnsatisfiableError: Encountered problems while solving:
+  - package dysgu-1.6.0-py310h770aed0_0 requires htslib >=1.18,<1.21.0a0, but none of the providers can be installed
 
-[Thu Jul 18 12:08:30 2024]
-rule align_with_bwa_mem:
-    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
-    output: ../../resources/bam-files/HG001.bwa-mem.sam
-    log: ../../logs/align_HG001_with_bwa-mem.log
-    jobid: 2
-    reason: Missing output files: ../../resources/bam-files/HG001.bwa-mem.sam
-    wildcards: sample=HG001
-    threads: 24
-    resources: tmpdir=<TBD>
+Could not solve for environment specs
+The following packages are incompatible
+└─ dysgu is not installable because there are no viable options
+   ├─ dysgu [1.3.16|1.4.0|1.4.2|1.5.0] would require
+   │  └─ htslib [>=1.16,<1.21.0a0 |>=1.17,<1.21.0a0 ] but there are no viable options
+   │     ├─ htslib [1.17|1.18|1.19|1.19.1|1.20] would require
+   │     │  └─ libdeflate >=1.18,<1.21.0a0 , which conflicts with any installable versions previously reported;
+   │     ├─ htslib 1.20 would require
+   │     │  └─ libdeflate >=1.20,<1.21.0a0 , which conflicts with any installable versions previously reported;
+   │     └─ htslib [1.15.1|1.16|1.17] would require
+   │        └─ libdeflate >=1.13,<1.21.0a0 , which conflicts with any installable versions previously reported;
+   ├─ dysgu 1.6.0 would require
+   │  └─ htslib >=1.18,<1.21.0a0 , which cannot be installed (as previously explained);
+   ├─ dysgu [1.6.0|1.6.1|1.6.2] would require
+   │  └─ pysam >=0.19  but there are no viable options
+   │     ├─ pysam [0.19.0|0.19.1] would require
+   │     │  └─ libdeflate >=1.10,<1.21.0a0 , which conflicts with any installable versions previously reported;
+   │     ├─ pysam [0.19.1|0.20.0|0.21.0] would require
+   │     │  └─ libdeflate >=1.13,<1.21.0a0 , which conflicts with any installable versions previously reported;
+   │     ├─ pysam [0.21.0|0.22.0|0.22.1] would require
+   │     │  └─ libdeflate >=1.18,<1.21.0a0 , which conflicts with any installable versions previously reported;
+   │     └─ pysam 0.22.1 would require
+   │        └─ libdeflate >=1.20,<1.21.0a0 , which conflicts with any installable versions previously reported;
+   └─ dysgu [1.6.4|1.6.5|1.6.6] would require
+      └─ htslib >=1.12  but there are no viable options
+         ├─ htslib [1.17|1.18|1.19|1.19.1|1.20], which cannot be installed (as previously explained);
+         ├─ htslib 1.20, which cannot be installed (as previously explained);
+         ├─ htslib [1.15.1|1.16|1.17], which cannot be installed (as previously explained);
+         ├─ htslib [1.12|1.13|1.14] would require
+         │  └─ libdeflate >=1.7,<1.21.0a0 , which conflicts with any installable versions previously reported;
+         ├─ htslib 1.14 would require
+         │  └─ libdeflate >=1.9,<1.21.0a0 , which conflicts with any installable versions previously reported;
+         └─ htslib [1.14|1.15|1.15.1] would require
+            └─ libdeflate >=1.10,<1.21.0a0 , which conflicts with any installable versions previously reported.
 
-Job 2155 exited with exit code 1.
-[Thu Jul 18 12:08:38 2024]
-Error in rule align_with_bwa_mem:
-    message: Error submitting jobscript (exit code 1):
-Your job 2155 ("sv-benchmarking_alignment") has been submitted
-For further error details see the cluster/cloud log and the log files of the involved rule(s).
-    jobid: 2
-    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
-    output: ../../resources/bam-files/HG001.bwa-mem.sam
-    log: ../../logs/align_HG001_with_bwa-mem.log (check log file(s) for error details)
-    conda-env: /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/18f90908a2ea392db940975d1cadf1c1_
-    shell:
-        bwa-mem2 mem -t 24 /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz > ../../resources/bam-files/HG001.bwa-mem.sam 2> ../../logs/align_HG001_with_bwa-mem.log
-        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
 
-
-[Thu Jul 18 12:08:38 2024]
-rule align_with_novoalign:
-    input: /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_1.fq.gz, /export/Projects/2024-SVCalling/GIAB-AltScaffold/V300029232_L04_read_2.fq.gz
-    output: ../../resources/bam-files/HG001.novoalign.sam
-    log: ../../logs/align_HG001_with_novoalign.log
-    jobid: 4
-    reason: Missing output files: ../../resources/bam-files/HG001.novoalign.sam
-    wildcards: sample=HG001
-    threads: 24
-    resources: tmpdir=<TBD>
-
-Submitted job 4 with external jobid 'Your job 2156 ("sv-benchmarking_alignment") has been submitted'.
-Removing output files of failed job align_with_bwa_mem since they might be corrupted:
-../../resources/bam-files/HG001.bwa-mem.sam
-[Sat Jul 20 01:31:06 2024]
-Finished job 4.
-1 of 5 steps (20%) done
-Shutting down, this might take some time.
-Exiting because a job execution failed. Look above for error message
-Complete log: .snakemake/log/2024-07-18T120800.538290.snakemake.log
-WorkflowError:
-At least one job did not complete successfully.

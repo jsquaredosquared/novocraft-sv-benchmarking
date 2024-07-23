@@ -1,0 +1,180 @@
+Building DAG of jobs...
+Creating conda environment ../envs/manta_env.yaml...
+Downloading and installing remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/../envs/manta_env.yaml:
+Command:
+mamba env create --quiet --no-default-packages --file "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/17daafad08df93307c15807a5de17398_.yaml" --prefix "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/17daafad08df93307c15807a5de17398_"
+Output:
+Channels:
+ - bioconda
+ - conda-forge
+ - nodefaults
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - python==2.7
+
+Current channels:
+
+  - https://conda.anaconda.org/bioconda/linux-64
+  - https://conda.anaconda.org/conda-forge/linux-64
+  - https://conda.anaconda.org/nodefaults/linux-64
+
+To search for alternate channels that may provide the conda package you're
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+
+
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 3
+Singularity containers: ignored
+Job stats:
+job          count
+---------  -------
+all              1
+run_manta        2
+total            3
+
+Select jobs to execute...
+Execute 2 jobs...
+
+[Tue Jul 23 16:41:27 2024]
+rule run_manta:
+    input: ../../outputs/manta/HG001/novoalign/runWorkflow.py
+    output: ../../outputs/manta/HG001/novoalign/diploidSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_novoalign_manta.execute_manta.log
+    jobid: 3
+    reason: Missing output files: ../../outputs/manta/HG001/novoalign/diploidSV.vcf.gz
+    wildcards: caller=manta, sample=HG001, aligner=novoalign
+    threads: 30
+    resources: tmpdir=<TBD>
+
+Job 2187 exited with exit code 1.
+[Tue Jul 23 16:41:36 2024]
+Error in rule run_manta:
+    message: Error submitting jobscript (exit code 1):
+Your job 2187 ("run-manta") has been submitted
+For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 3
+    input: ../../outputs/manta/HG001/novoalign/runWorkflow.py
+    output: ../../outputs/manta/HG001/novoalign/diploidSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_novoalign_manta.execute_manta.log (check log file(s) for error details)
+    conda-env: /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/fe887fcb6bed2c25285d2874924504be_
+    shell:
+        ../../outputs/manta/HG001/novoalign/runWorkflow.py -j 30 -e jeffrey@novocraft.com 
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+
+[Tue Jul 23 16:41:36 2024]
+rule run_manta:
+    input: ../../outputs/manta/HG001/bwa-mem/runWorkflow.py
+    output: ../../outputs/manta/HG001/bwa-mem/diploidSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_bwa-mem_manta.execute_manta.log
+    jobid: 1
+    reason: Missing output files: ../../outputs/manta/HG001/bwa-mem/diploidSV.vcf.gz
+    wildcards: caller=manta, sample=HG001, aligner=bwa-mem
+    threads: 30
+    resources: tmpdir=<TBD>
+
+Job 2188 exited with exit code 1.
+[Tue Jul 23 16:41:49 2024]
+Error in rule run_manta:
+    message: Error submitting jobscript (exit code 1):
+Your job 2188 ("run-manta") has been submitted
+For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 1
+    input: ../../outputs/manta/HG001/bwa-mem/runWorkflow.py
+    output: ../../outputs/manta/HG001/bwa-mem/diploidSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_bwa-mem_manta.execute_manta.log (check log file(s) for error details)
+    conda-env: /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/fe887fcb6bed2c25285d2874924504be_
+    shell:
+        ../../outputs/manta/HG001/bwa-mem/runWorkflow.py -j 30 -e jeffrey@novocraft.com 
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-07-23T164057.602597.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
+Building DAG of jobs...
+Pulling singularity image docker://dceoy/manta.
+Using shell: /usr/bin/bash
+Provided remote nodes: 3
+Conda environments: ignored
+Job stats:
+job          count
+---------  -------
+all              1
+run_manta        2
+total            3
+
+Select jobs to execute...
+Execute 2 jobs...
+
+[Tue Jul 23 16:46:34 2024]
+rule run_manta:
+    input: ../../outputs/manta/HG001/novoalign/runWorkflow.py
+    output: ../../outputs/manta/HG001/novoalign/diploidSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_novoalign_manta.execute_manta.log
+    jobid: 3
+    reason: Missing output files: ../../outputs/manta/HG001/novoalign/diploidSV.vcf.gz
+    wildcards: caller=manta, sample=HG001, aligner=novoalign
+    threads: 30
+    resources: tmpdir=<TBD>
+
+Job 2189 exited with exit code 1.
+[Tue Jul 23 16:46:49 2024]
+Error in rule run_manta:
+    message: Error submitting jobscript (exit code 1):
+Your job 2189 ("run-manta") has been submitted
+For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 3
+    input: ../../outputs/manta/HG001/novoalign/runWorkflow.py
+    output: ../../outputs/manta/HG001/novoalign/diploidSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSV.vcf.gz, ../../outputs/manta/HG001/novoalign/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_novoalign_manta.execute_manta.log (check log file(s) for error details)
+    conda-env: /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/ac8c60aed2a74adedd45aa99730e63bb_
+    shell:
+        ../../outputs/manta/HG001/novoalign/runWorkflow.py -j 30 -e jeffrey@novocraft.com 
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+
+[Tue Jul 23 16:46:49 2024]
+rule run_manta:
+    input: ../../outputs/manta/HG001/bwa-mem/runWorkflow.py
+    output: ../../outputs/manta/HG001/bwa-mem/diploidSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_bwa-mem_manta.execute_manta.log
+    jobid: 1
+    reason: Missing output files: ../../outputs/manta/HG001/bwa-mem/diploidSV.vcf.gz
+    wildcards: caller=manta, sample=HG001, aligner=bwa-mem
+    threads: 30
+    resources: tmpdir=<TBD>
+
+Job 2190 exited with exit code 1.
+[Tue Jul 23 16:47:04 2024]
+Error in rule run_manta:
+    message: Error submitting jobscript (exit code 1):
+Your job 2190 ("run-manta") has been submitted
+For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 1
+    input: ../../outputs/manta/HG001/bwa-mem/runWorkflow.py
+    output: ../../outputs/manta/HG001/bwa-mem/diploidSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSV.vcf.gz, ../../outputs/manta/HG001/bwa-mem/candidateSmallIndels.vcf.gz
+    log: ../../logs/HG001_bwa-mem_manta.execute_manta.log (check log file(s) for error details)
+    conda-env: /export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/ac8c60aed2a74adedd45aa99730e63bb_
+    shell:
+        ../../outputs/manta/HG001/bwa-mem/runWorkflow.py -j 30 -e jeffrey@novocraft.com 
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-07-23T164551.726039.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
