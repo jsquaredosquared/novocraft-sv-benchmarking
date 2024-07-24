@@ -10,9 +10,10 @@ REFERENCE = config["reference"]
 rule all:
     input:
         expand(
-            "../../outputs/dysgu/{sample}.{aligner}.dysgu.vcf",
+            "../../outputs/{sample}/{sample}.{aligner}.{caller}.vcf",
             sample=SAMPLES,
-            aligner=ALIGNERS
+            aligner=ALIGNERS,
+            caller=CALLERS
         )
 
 
@@ -60,8 +61,8 @@ rule run_dysgu:
         "../../resources/alignment-files/{sample}.{aligner}_sorted.cram"
     output:
         "../../outputs/dysgu/{sample}.{aligner}.dysgu.vcf"
-    conda:
-        "../envs/dysgu_env.yaml"
+    container:
+        "docker://kcleal/dysgu"
     log:
         "../../logs/{sample}.{aligner}.dysgu.log"
     threads: 30
@@ -73,4 +74,23 @@ rule run_dysgu:
         "{params.temp_dir} "
         "{input} "
         "> {output} "
+        "2> {log}"
+
+
+rule run_delly:
+    input:
+        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram"
+    output:
+        "../../outputs/delly/{sample}.{aligner}.delly.vcf"
+    container:
+        "docker://dellytools/delly"
+    log:
+        "../../logs/{sample}.{aligner}.delly.log"
+    threads:
+    params:
+        exclude_regions = "../../resources/delly/human.hg19.excl.tsv"
+    shell:
+        f"delly call -g {REFERENCE} "
+        "-x {params.exclude_regions} "
+        "{input} > {{output} "
         "2> {log}"
