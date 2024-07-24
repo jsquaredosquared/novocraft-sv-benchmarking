@@ -1,13 +1,13 @@
 reference: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa"
 
 aligners: 
-  bwa-mem: ""
+  bwa-mem2: ""
   novoalign: "/export/home/jeffrey/.local/bin/novocraft/novoalign"
 
 samples:
   HG002:
-    - "../resources/samples/HG002/HG002_HiSeq30x_subsampled_R1.fastq.gz"
-    - "../resources/samples/HG002/HG002_HiSeq30x_subsampled_R2.fastq.gz"
+    - "/export/home/jeffrey/Documents/sv-benchmarking/resources/samples/HG002/HG002_HiSeq30x_subsampled_R1.fastq.gz"
+    - "/export/home/jeffrey/Documents/sv-benchmarking/resources/samples/HG002/HG002_HiSeq30x_subsampled_R2.fastq.gz"
 
 callers:
-  - "manta"
+  - "dysgu"

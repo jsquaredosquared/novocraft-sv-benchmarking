@@ -41,7 +41,7 @@ rule align_with_novoalign:
     log:
         "../../logs/align_{sample}_with_novoalign.log",
     threads: 30
-    run:
+    shell:
         f"{ALIGNERS["novoalign"]} -i 400,100 -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
 
 rule sort_sam_to_cram:

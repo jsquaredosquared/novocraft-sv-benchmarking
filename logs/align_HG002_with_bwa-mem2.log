@@ -1,0 +1,72 @@
+Looking to launch executable "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/18f90908a2ea392db940975d1cadf1c1_/bin/bwa-mem2.avx", simd = .avx
+Launching executable "/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules/.snakemake/conda/18f90908a2ea392db940975d1cadf1c1_/bin/bwa-mem2.avx"
+-----------------------------
+Executing in AVX mode!!
+-----------------------------
+* SA compression enabled with xfactor: 8
+* Ref file: /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa
+* Entering FMI_search
+* Index file found. Loading index from /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa.bwt.2bit.64
+* Reference seq len for bi-index = 6274909011
+* sentinel-index: 2668688548
+* Count:
+0,	1
+1,	1832527715
+2,	3137454506
+3,	4442381297
+4,	6274909011
+
+* Reading other elements of the index from files /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa
+* Index prefix: /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa
+* Read 0 ALT contigs
+* Done reading Index!!
+* Reading reference genome..
+* Binary seq file = /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa.0123
+* Reference genome size: 6274909010 bp
+* Done reading reference genome !!
+
+------------------------------------------
+1. Memory pre-allocation for Chaining: 4180.1515 MB
+2. Memory pre-allocation for BSW: 7188.5107 MB
+3. Memory pre-allocation for BWT: 2319.4253 MB
+------------------------------------------
+* Threads used (compute): 30
+* No. of pipeline threads: 2
+
+[0000] read_chunk: 300000000, work_chunk_size: 300000144, nseq: 2027028
+	[0000][ M::kt_pipeline] read 2027028 sequences (300000144 bp)...
+[0000] Reallocating initial memory allocations!!
+[0000] Calling mem_process_seqs.., task: 0
+[0000] 1. Calling kt_for - worker_bwt
+[0000] read_chunk: 300000000, work_chunk_size: 300000144, nseq: 2027028
+	[0000][ M::kt_pipeline] read 2027028 sequences (300000144 bp)...
+[0000] 2. Calling kt_for - worker_aln
+[0000] Inferring insert size distribution of PE reads from data, l_pac: 3137454505, n: 2027028
+[0000][PE] # candidate unique pairs for (FF, FR, RF, RR): (90, 836475, 42, 17)
+[0000][PE] analyzing insert size distribution for orientation FF...
+[0000][PE] (25, 50, 75) percentile: (221, 453, 642)
+[0000][PE] low and high boundaries for computing mean and std.dev: (1, 1484)
+[0000][PE] mean and std.dev: (435.35, 257.79)
+[0000][PE] low and high boundaries for proper pairs: (1, 1905)
+[0000][PE] analyzing insert size distribution for orientation FR...
+[0000][PE] (25, 50, 75) percentile: (485, 580, 678)
+[0000][PE] low and high boundaries for computing mean and std.dev: (99, 1064)
+[0000][PE] mean and std.dev: (579.53, 157.64)
+[0000][PE] low and high boundaries for proper pairs: (1, 1257)
+[0000][PE] analyzing insert size distribution for orientation RF...
+[0000][PE] (25, 50, 75) percentile: (312, 1066, 2251)
+[0000][PE] low and high boundaries for computing mean and std.dev: (1, 6129)
+[0000][PE] mean and std.dev: (1334.58, 1414.47)
+[0000][PE] low and high boundaries for proper pairs: (1, 8068)
+[0000][PE] analyzing insert size distribution for orientation RR...
+[0000][PE] (25, 50, 75) percentile: (602, 1786, 2526)
+[0000][PE] low and high boundaries for computing mean and std.dev: (1, 6374)
+[0000][PE] mean and std.dev: (1623.41, 1123.80)
+[0000][PE] low and high boundaries for proper pairs: (1, 8298)
+[0000][PE] skip orientation FF
+[0000][PE] skip orientation RF
+[0000][PE] skip orientation RR
+[0000] 3. Calling kt_for - worker_sam
+	[0000][ M::mem_process_seqs] Processed 2027028 reads in 960.608 CPU sec, 32.236 real sec
+[0000] Calling mem_process_seqs.., task: 1
+[0000] 1. Calling kt_for - worker_bwt

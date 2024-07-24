@@ -10,7 +10,7 @@ REFERENCE = config["reference"]
 rule all:
     input:
         expand(
-            "../../outputs/{sample}/{sample}.{aligner}.{caller}.vcf",
+            "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf",
             sample=SAMPLES,
             aligner=ALIGNERS,
             caller=CALLERS
@@ -29,7 +29,8 @@ rule configure_manta:
     params:
         out_dir = lambda wildcards: f"../../outputs/{wildcards.caller}/{wildcards.sample}/{wildcards.aligner}",
         regions_bed = "../../resources/manta/manta_main-contigs.bed.gz"
-    shell:
+    shell:output:
+        "test.txt"
         "configManta.py "
         "--bam {input} "
         f"--referenceFasta {REFERENCE} "
@@ -77,6 +78,7 @@ rule run_dysgu:
         "2> {log}"
 
 
+# TODO Use multi-threading mode.
 rule run_delly:
     input:
         "../../resources/alignment-files/{sample}.{aligner}_sorted.cram"
