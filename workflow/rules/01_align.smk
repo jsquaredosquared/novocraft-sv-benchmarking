@@ -1,48 +1,46 @@
 configfile: "../../config/config.yaml"
 
 
-INPUT_PREFIX = config["input_prefix"]
-OUTPUT_PREFIX = config["output_prefix"]
 SAMPLES = config["samples"]
 ALIGNERS = config["aligners"]
 REFERENCE = config["reference"]
 
 
 def get_input_fastqs(wildcards):
-    return [f"{INPUT_PREFIX}/{fastq}" for fastq in SAMPLES[wildcards.sample]]
+    return SAMPLES[wildcards.sample]
 
 
 rule all:
     input:
         expand(
-            "../../resources/alignment-files/{sample}.{aligner}_sorted.bam",
+            "../../resources/alignment-files/{sample}.{aligner}_sorted.cram",
             sample=SAMPLES,
             aligner=ALIGNERS,
         ),
 
 
-rule align_with_bwa_mem:
+rule align_with_bwa_mem2:
     input:
-        get_input_fastqs,
+        get_input_fastqs
     output:
-        temp("../../resources/alignment-files/{sample}.{aligner}.sam"),
+        temp("../../resources/alignment-files/{sample}.bwa-mem2.sam"),
     log:
-        "../../logs/align_{sample}_with_{aligner}.log",
+        "../../logs/align_{sample}_with_bwa-mem2.log",
     conda:
         "../envs/alignment_env.yaml"
-    threads: 24
+    threads: 30
     shell:
-        f"bwa-mem2 mem -t 24 {REFERENCE} {{input}} > {{output}} 2> {{log}}"
+        f"bwa-mem2 mem -t 30 {REFERENCE} {{input}} > {{output}} 2> {{log}}"
 
 
 rule align_with_novoalign:
     input:
-        get_input_fastqs,
+        get_input_fastqs
     output:
-        temp("../../resources/alignment-files/{sample}.{aligner}.sam"),
+        temp("../../resources/alignment-files/{sample}.novoalign.sam"),
     log:
-        "../../logs/align_{sample}_with_{aligner}.log",
-    threads: 24
+        "../../logs/align_{sample}_with_novoalign.log",
+    threads: 30
     run:
         f"{ALIGNERS["novoalign"]} -i 400,100 -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
 
@@ -71,4 +69,4 @@ rule index_cram_file:
     conda:
         "../envs/alignment_env.yaml"
     shell:
-        "samtools index {output} -@ 16"
+        "samtools index {input} -@ 16"

@@ -1,16 +1,13 @@
-input_prefix: "/export/Projects/2024-SVCalling/GIAB-AltScaffold"
-output_prefix: "/export/home/jeffrey/Documents/sv-benchmarking/outputs"
-
-reference: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta"
+reference: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa"
 
 aligners: 
-  bwa-mem: "docker run dceoy/bwa-mem2"
+  bwa-mem: ""
   novoalign: "/export/home/jeffrey/.local/bin/novocraft/novoalign"
 
 samples:
-  HG001:
-    - "V300029232_L04_read_1.fq.gz"
-    - "V300029232_L04_read_2.fq.gz"
+  HG002:
+    - "../resources/samples/HG002/HG002_HiSeq30x_subsampled_R1.fastq.gz"
+    - "../resources/samples/HG002/HG002_HiSeq30x_subsampled_R2.fastq.gz"
 
 callers:
   - "manta"
