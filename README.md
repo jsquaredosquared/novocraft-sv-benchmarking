@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains a Snakemake workflow used to compare the performance of SV callers when different short-read aligners are used. Currently it is being designed to compare SV calls by Manta on BAM files aligned with NovoAlign and BWA-MEM2, although it could be extended to compare other SV callers or aligners.
+This repository contains a Snakemake workflow used to compare the performance of SV callers when different short-read aligners are used. Currently it is being designed to compare SV calls by Manta on BAM files produced with NovoAlign and BWA-MEM2, although it could be extended to compare other SV callers or aligners.
 
 If NovoAlign performs well, an SV-calling pipeline could potentially be incorporated into Novocraft's products.
 
@@ -23,6 +23,8 @@ If NovoAlign performs well, an SV-calling pipeline could potentially be incorpor
 
 ### Questions
 
+Note: Focus first on insertions and deletions.
+
 - Does Novoalign perform better overall?
   - Calculate recall, precision, and F1 scores.
 - Does Novoalign perform better for certain types or sizes of SVs?
@@ -32,3 +34,5 @@ If NovoAlign performs well, an SV-calling pipeline could potentially be incorpor
 ## Acknowledgements
 
 This work was part of my internship at [Novocraft](novocraft.com) (July 2024 - September 2024).
+
+## References
