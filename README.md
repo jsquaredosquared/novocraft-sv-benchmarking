@@ -8,6 +8,8 @@ If NovoAlign performs well, an SV-calling pipeline could potentially be incorpor
 
 ## Overview
 
+The process has been implemented as a Snakemake workflow (found in `./workflow`) that performs the following steps:
+
 - [ ] Align the FASTQ reads using the different aligners.
 - [ ] Call the structural variants on the different BAM files using the SV caller(s).
 - [ ] Compare the SV calls to the truth set to determine performance characteristics (e.g., F score).
