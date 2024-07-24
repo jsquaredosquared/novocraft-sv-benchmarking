@@ -10,4 +10,5 @@ samples:
     - "/export/home/jeffrey/Documents/sv-benchmarking/resources/samples/HG002/HG002_HiSeq30x_subsampled_R2.fastq.gz"
 
 callers:
-  - "dysgu"
+  - "delly"
+  - "lumpy"

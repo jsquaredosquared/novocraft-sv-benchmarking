@@ -39,6 +39,7 @@ rule configure_manta:
         "2> {log}"
 
 
+# TODO Figure out how to run with Python2
 rule run_manta:
     input:
         "../../outputs/manta/{sample}/{aligner}/runWorkflow.py"
@@ -78,14 +79,14 @@ rule run_dysgu:
         "2> {log}"
 
 
-# TODO Use multi-threading mode.
+# No multithreading (https://github.com/dellytools/delly/issues/268#issuecomment-975385454).
 rule run_delly:
     input:
         "../../resources/alignment-files/{sample}.{aligner}_sorted.cram"
     output:
         "../../outputs/delly/{sample}.{aligner}.delly.vcf"
-    container:
-        "docker://dellytools/delly"
+    conda:
+        "../envs/delly_env.yaml"
     log:
         "../../logs/{sample}.{aligner}.delly.log"
     threads:
@@ -94,5 +95,27 @@ rule run_delly:
     shell:
         f"delly call -g {REFERENCE} "
         "-x {params.exclude_regions} "
-        "{input} > {{output} "
+        "{input} > {output} "
         "2> {log}"
+
+
+rule run_smoove:
+    input:
+        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram"
+    output:
+        "../../outputs/lumpy/{sample}.{aligner}.lumpy.vcf"
+    conda:
+        "../envs/smoove_env.yaml"
+    params:
+        exclude_regions = "../../resources/lumpy/ceph18.b37.lumpy.exclude.2014-01-15.bed"
+    threads: 30
+    shell:
+        "smoove call "
+        "-x ??? "
+        "--genotype "
+        "--name ??? "
+        "--exclude {exclude_regions} "
+        f"--fasta {REFERENCE} "
+        "-p {threads} "
+        "--outdir ??? "
+        "{input} "
