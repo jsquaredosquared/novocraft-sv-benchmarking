@@ -13,12 +13,14 @@ def get_input_fastqs(wildcards):
 rule all:
     input:
         expand(
-            "../../resources/alignment-files/{sample}.{aligner}_sorted.cram",
+            "../../resources/alignment-files/{sample}.{aligner}_sorted.{ext}",
             sample=SAMPLES,
             aligner=ALIGNERS,
+            ext=["cram", "cram.crai"]
         ),
 
 
+# TODO: Add read group ('-R "@RG\tID:V1\tSM:HG002\tPL:ILLUMINA\tLB:sv"')
 rule align_with_bwa_mem2:
     input:
         get_input_fastqs
@@ -42,7 +44,7 @@ rule align_with_novoalign:
         "../../logs/align_{sample}_with_novoalign.log",
     threads: 30
     shell:
-        f"{ALIGNERS["novoalign"]} -i 400,100 -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V3\tSM:NA12878\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
+        f"{ALIGNERS["novoalign"]} -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V1\tSM:HG002\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
 
 rule sort_sam_to_cram:
     input:
