@@ -1,6 +1,6 @@
 snakemake -s 01_align.smk \
--c 60 \
+--cores all \
 --sdm conda \
 --executor cluster-generic \
---cluster-generic-submit-cmd "qsub -V -sync y -cwd -pe slave_pe 30 -q slave.q -N alignment" \
--j unlimited
+--cluster-generic-submit-cmd "qsub -V -sync y -cwd -pe slave_pe {threads} -q slave.q -N {rule}" \
+--jobs unlimited

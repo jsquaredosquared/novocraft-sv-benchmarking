@@ -12,8 +12,10 @@ The process has been implemented as a Snakemake workflow (found in `./workflow`)
 
 - [ ] Align the FASTQ reads using the different aligners.
 - [ ] Call the structural variants on the different BAM files using the SV caller(s).
-- [ ] Compare the SV calls to the truth set to determine performance characteristics (e.g., F score).
+- [ ] Compare the SV calls to the truth set to determine performance characteristics.
 - [ ] Compare the results for each aligner.
+
+For each step, the default/recommended settings were used according to the documentation.
 
 ## Datasets
 

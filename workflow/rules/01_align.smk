@@ -33,7 +33,7 @@ rule align_with_bwa_mem2:
     shell:
         f"(bwa-mem2 mem "
         "-t 24 "
-        "-R '@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:ILLUMINA'"
+        "-R '@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:ILLUMINA' "
         f"{REFERENCE} {{input}} "
         "| samtools sort -@ 4 -O bam -l 0 -T /tmp - "
         f"| samtools view -@ 4 -T {REFERENCE} -C -o {{output}} - "
@@ -68,6 +68,10 @@ rule index_cram_file:
         "../../logs/index_{sample}.{aligner}_cram.log"
     conda:
         "../envs/alignment_env.yaml"
-    threads: 16
+    threads: 8
     shell:
         "samtools index {input} -@ {threads}"
+
+
+# http://www.htslib.org/workflow/cram.html
+# TODO: Should you mark duplicates?
