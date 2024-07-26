@@ -49,9 +49,9 @@ rule align_with_novoalign:
         "../../logs/align_{sample}_with_novoalign.log",
     conda:
         "../envs/alignment_env.yaml"
-    threads: 32
+    threads: 48
     shell:
-        f"({ALIGNERS["novoalign"]} -d {REFERENCE}.nix "
+        f"({ALIGNERS["novoalign"]} -d {REFERENCE}.nix -c 40 "
         "-f {input} -o SAM "
         "'@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:ILLUMINA' "
         "| samtools sort -@ 4 -O bam -l 0 -T /tmp - "
