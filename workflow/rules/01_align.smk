@@ -20,55 +20,54 @@ rule all:
         ),
 
 
-# TODO: Add read group ('-R "@RG\tID:V1\tSM:HG002\tPL:ILLUMINA\tLB:sv"')
 rule align_with_bwa_mem2:
     input:
         get_input_fastqs
     output:
-        temp("../../resources/alignment-files/{sample}.bwa-mem2.sam"),
+        "../../resources/alignment-files/{sample}.bwa-mem2.cram",
     log:
         "../../logs/align_{sample}_with_bwa-mem2.log",
     conda:
         "../envs/alignment_env.yaml"
-    threads: 30
+    threads: 32
     shell:
-        f"bwa-mem2 mem -t 30 {REFERENCE} {{input}} > {{output}} 2> {{log}}"
+        f"(bwa-mem2 mem "
+        "-t 24 "
+        "-R '@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:ILLUMINA'"
+        f"{REFERENCE} {{input}} "
+        "| samtools sort -@ 4 -O bam -l 0 -T /tmp - "
+        f"| samtools view -@ 4 -T {REFERENCE} -C -o {{output}} - "
+        ")2> {log}"
 
 
 rule align_with_novoalign:
     input:
         get_input_fastqs
     output:
-        temp("../../resources/alignment-files/{sample}.novoalign.sam"),
+        "../../resources/alignment-files/{sample}.novoalign.cram",
     log:
         "../../logs/align_{sample}_with_novoalign.log",
-    threads: 30
-    shell:
-        f"{ALIGNERS["novoalign"]} -d {REFERENCE}.nix -f {{input}} -o SAM '@RG\tID:V1\tSM:HG002\tPL:ILLUMINA\tLB:sv' > {{output}} 2> {{log}}"
-
-rule sort_sam_to_cram:
-    input:
-        "../../resources/alignment-files/{sample}.{aligner}.sam",
-    output:
-        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram",
-    log:
-        "../../logs/sort_{sample}_{aligner}_sam_to_cram.log",
-    threads: 16
     conda:
         "../envs/alignment_env.yaml"
+    threads: 32
     shell:
-        "samtools sort {input} -o {output} -@ 16 2> {log}"
+        f"({ALIGNERS["novoalign"]} -d {REFERENCE}.nix "
+        "-f {input} -o SAM "
+        "'@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:ILLUMINA' "
+        "| samtools sort -@ 4 -O bam -l 0 -T /tmp - "
+        f"| samtools view -@ 4 -T {REFERENCE} -C -o {{output}} - "
+        ")2> {log}"
         
 
 rule index_cram_file:
     input:
-        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram"
+        "../../resources/alignment-files/{sample}.{aligner}.cram"
     output:
-        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram.crai"
+        "../../resources/alignment-files/{sample}.{aligner}.cram.crai"
     log:
         "../../logs/index_{sample}.{aligner}_cram.log"
-    threads: 16
     conda:
         "../envs/alignment_env.yaml"
+    threads: 16
     shell:
-        "samtools index {input} -@ 16"
+        "samtools index {input} -@ {threads}"
