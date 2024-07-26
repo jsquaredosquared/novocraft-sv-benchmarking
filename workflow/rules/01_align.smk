@@ -13,7 +13,7 @@ def get_input_fastqs(wildcards):
 rule all:
     input:
         expand(
-            "../../resources/alignment-files/{sample}.{aligner}_sorted.{ext}",
+            "../../resources/alignment-files/{sample}.{aligner}.{ext}",
             sample=SAMPLES,
             aligner=ALIGNERS,
             ext=["cram", "cram.crai"]
