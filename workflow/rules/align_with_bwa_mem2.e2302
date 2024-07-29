@@ -17,3 +17,7 @@ localrule align_with_bwa_mem2:
     resources: mem_mb=8000, mem_mib=7630, disk_mb=169278, disk_mib=161437, tmpdir=/tmp/2302.1.slave.q
 
 Activating conda environment: .snakemake/conda/18f90908a2ea392db940975d1cadf1c1_
+[Fri Jul 26 21:49:51 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.

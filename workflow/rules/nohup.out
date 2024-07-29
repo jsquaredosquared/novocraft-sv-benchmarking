@@ -38,3 +38,24 @@ rule align_with_bwa_mem2:
     resources: tmpdir=<TBD>
 
 Submitted job 1 with external jobid 'Your job 2302 ("align_with_bwa_mem2") has been submitted'.
+[Fri Jul 26 21:52:38 2024]
+Finished job 1.
+1 of 5 steps (20%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Fri Jul 26 21:52:38 2024]
+rule index_cram_file:
+    input: ../../resources/alignment-files/HG002.bwa-mem2.cram
+    output: ../../resources/alignment-files/HG002.bwa-mem2.cram.crai
+    log: ../../logs/index_HG002.bwa-mem2_cram.log
+    jobid: 2
+    reason: Missing output files: ../../resources/alignment-files/HG002.bwa-mem2.cram.crai; Input files updated by another job: ../../resources/alignment-files/HG002.bwa-mem2.cram
+    wildcards: sample=HG002, aligner=bwa-mem2
+    threads: 8
+    resources: tmpdir=<TBD>
+
+Submitted job 2 with external jobid 'Your job 2304 ("index_cram_file") has been submitted'.
+[Fri Jul 26 21:58:19 2024]
+Finished job 2.
+2 of 5 steps (40%) done
