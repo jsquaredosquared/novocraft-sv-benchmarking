@@ -7,17 +7,17 @@ REFERENCE = config["reference"]
 
 rule compare_to_truth_set:
     input:
-        "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf"
+        "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf",
     output:
-        "../../outputs/truvari/{sample}.{aligner}.{caller}/summary.json"
+        "../../outputs/truvari/{sample}.{aligner}.{caller}/summary.json",
+    # Check Truvari installation guide for caveats.
     conda:
         "../envs/truvari_env.yaml"
-        # Check Truvari installation guide for caveats.
     log:
-        "../../logs/{sample}.{aligner}.{caller}.truvari.log"
+        "../../logs/{sample}.{aligner}.{caller}.truvari.log",
     params:
-        truth_set = lambda wildcards: TRUTH_SETS[wildcards.sample],
-        out_dir = lambda wildcards: f"../../outputs/truvari/{wildcards.sample}.{wildcards.aligner}.{wildcards.caller}"
+        truth_set=lambda wildcards: TRUTH_SETS[wildcards.sample],
+        out_dir=lambda wildcards: f"../../outputs/truvari/{wildcards.sample}.{wildcards.aligner}.{wildcards.caller}",
     shell:
         "truvari bench "
         "--base {params.truth_set} "

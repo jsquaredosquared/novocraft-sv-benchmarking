@@ -16,13 +16,13 @@ rule all:
             "../../resources/alignment-files/{sample}.{aligner}.{ext}",
             sample=SAMPLES,
             aligner=ALIGNERS,
-            ext=["cram", "cram.crai"]
+            ext=["cram", "cram.crai"],
         ),
 
 
 rule align_with_bwa_mem2:
     input:
-        get_input_fastqs
+        get_input_fastqs,
     output:
         "../../resources/alignment-files/{sample}.bwa-mem2.cram",
     log:
@@ -42,7 +42,7 @@ rule align_with_bwa_mem2:
 
 rule align_with_novoalign:
     input:
-        get_input_fastqs
+        get_input_fastqs,
     output:
         "../../resources/alignment-files/{sample}.novoalign.cram",
     log:
@@ -57,15 +57,15 @@ rule align_with_novoalign:
         "| samtools sort -@ 4 -O bam -l 0 -T /tmp - "
         f"| samtools view -@ 4 -T {REFERENCE} -C -o {{output}} - "
         ")2> {log}"
-        
+
 
 rule index_cram_file:
     input:
-        "../../resources/alignment-files/{sample}.{aligner}.cram"
+        "../../resources/alignment-files/{sample}.{aligner}.cram",
     output:
-        "../../resources/alignment-files/{sample}.{aligner}.cram.crai"
+        "../../resources/alignment-files/{sample}.{aligner}.cram.crai",
     log:
-        "../../logs/index_{sample}.{aligner}_cram.log"
+        "../../logs/index_{sample}.{aligner}_cram.log",
     conda:
         "../envs/alignment_env.yaml"
     threads: 8
