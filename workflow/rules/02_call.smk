@@ -20,7 +20,7 @@ rule all:
 
 rule configure_manta:
     input:
-        "../../resources/alignment-files/{sample}.{aligner}_sorted.cram",
+        "../../resources/alignment-files/{sample}.{aligner}.cram",
     output:
         "../../outputs/manta/{sample}/{aligner}/runWorkflow.py",
     conda:
@@ -29,12 +29,10 @@ rule configure_manta:
         "../../logs/{sample}_{aligner}.configure_manta.log",
     params:
         out_dir=lambda wildcards: f"../../outputs/manta/{wildcards.sample}/{wildcards.aligner}",
-        regions_bed="../../resources/manta/manta_main-contigs.bed.gz",
     shell:
         "configManta.py "
         "--bam {input} "
         f"--referenceFasta {REFERENCE} "
-        "--callRegions {params.regions_bed} "
         "--runDir {params.out_dir} "
         "2> {log}"
 
@@ -148,6 +146,7 @@ rule run_wham:
         "2> {log} "
 
 
+# TODO: Find solution to error (https://github.com/SciLifeLab/TIDDIT/issues/109)
 rule run_tiddit:
     input:
         "../../resources/alignment-files/{sample}.{aligner}.cram",
@@ -162,4 +161,5 @@ rule run_tiddit:
         "tiddit --sv --bam {input} "
         "-o ../../outputs/tiddit/{wildcards.sample}.{wildcards.aligner}.tiddit "
         f"--ref {REFERENCE} "
+        "--threads {threads} "
         "2> {log}"
