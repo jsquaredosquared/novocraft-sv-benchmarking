@@ -27,8 +27,6 @@ For each step, the default/recommended settings were used according to the docum
 
 ### Questions
 
-Note: Focus first on insertions and deletions.
-
 - Does Novoalign perform better overall?
   - Calculate recall, precision, and F1 scores (3 d.p.).
     | Aligner/Caller  | F1    | Recall | Precision |
