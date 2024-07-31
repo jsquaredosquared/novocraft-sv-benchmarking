@@ -11,9 +11,9 @@ If NovoAlign performs well, an SV-calling pipeline could potentially be incorpor
 The process has been implemented as a Snakemake workflow (found in `./workflow`) that performs the following steps:
 
 - [x] Align the FASTQ reads using the different aligners.
-- [ ] Call the structural variants on the different BAM files using the SV caller(s).
-- [ ] Compare the SV calls to the truth set to determine performance characteristics.
-- [ ] Compare the results for each aligner.
+- [x] Call the structural variants on the different BAM files using the SV caller(s).
+- [x] Compare the SV calls to the truth set to determine performance characteristics.
+- [x] Compare the results for each aligner.
 
 For each step, the default/recommended settings were used according to the documentation.
 
@@ -28,7 +28,7 @@ For each step, the default/recommended settings were used according to the docum
 ### Questions
 
 - Does Novoalign perform better overall?
-  - Calculate recall, precision, and F1 scores (3 s.f.).
+  - [ ] Calculate recall, precision, and F1 scores (3 s.f.).
     | Aligner | Caller  | F1    | Recall | Precision |
     | ------- | ------ | ----- | ------ | --------- |
     | Novoalign | Manta | 0.572 | 0.420  | 0.895     |
@@ -36,8 +36,8 @@ For each step, the default/recommended settings were used according to the docum
     | Novoalign | Delly | 0.431 | 0.295  | 0.795     |
     | Bwa-mem2 | Delly  | 0.371 | 0.246  | 0.753     |
 - Does Novoalign perform better for certain types or sizes of SVs?
-  - Group by type/size, calculate performance characteristics for each group, then compare.
-  - Generate Venn diagrams or upset plots to compare the calls made from each caller.
+  - [ ] Group by type/size, calculate performance characteristics for each group, then compare.
+  - [ ] Generate Venn diagrams or upset plots to compare the calls made from each caller.
 
 ## Acknowledgements
 
