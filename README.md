@@ -68,7 +68,7 @@ The default `truvari bench` settings were used, with the following exceptions:
 - The size of SVs was limited using the options `--sizemin 50` (common definition of SV) and `--sizemax 1_000_000` (because larger events are more likely to be erroneous).
 - Only variants with `FILTER == PASS` are considered (`--passonly`).
 
-As per the default settings, SVs are considered the same if:
+As per the default settings, 2 SVs are considered the same if:
 
 - they have the same SVTYPE (`--typeignore False`)
 - the distance between their breakends is less than 500 bp (`--refdist 500`)
