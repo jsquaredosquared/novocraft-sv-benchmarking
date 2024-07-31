@@ -16,22 +16,42 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ### Methods
 
-The process has been implemented as a Snakemake workflow (found in `./workflow`) that performs the following steps:
+The benchmarking process has been implemented as a Snakemake workflow (found in `workflow`). The workflow can be configured by editing the `config.yaml` file found in `config`. The workflow performs the following steps:
 
 #### `01_align`
 
-This step aligns the FASTQ reads for each sample listed in the "samples" section of the config file and produces a CRAM file for each aligner listed in the "aligners" section of the config file.
+This step aligns the FASTQ reads for each sample listed in the "samples" section of the config file and produces a CRAM file for each aligner listed in the "aligners" section of the config file. This workflow currently works with the following aligners:
+
+- BWA-MEM2
+- Novoalign
+
+Other aligners can be added, provided that a samtools-indexed CRAM file is produced.
 
 #### `02_call`
 
-This step takes each CRAM file and calls structural variants using each SV caller listed in the "callers" section of the config file. For each caller, the developer's default and/or recommended settings were used. This workflow currently works with the following callers:
+This step takes each CRAM file and calls structural variants using each SV caller listed in the "callers" section of the config file. For each caller, the default settings recommended by the developer were used. This workflow currently works with the following callers:
 
 - Delly
+- Dysgu
 - Manta
+
+Other callers can be added, provided that a bgzipped and tabix-indexed SV VCF file is produced.
 
 #### `03_benchmark`
 
-This step uses `truvari bench` to compare each SV VCF file to the truth set to determine performance characteristics (recall, precision, F1 score).
+This step uses `truvari bench` to compare each SV VCF file to the truth set to calculate the performance characteristics (recall, precision, F1 score). This workflow calculates the overall performance characteristics, as well as the performance characteristics by SVTYPE (DEL, DUP, INS, INV) and SVLEN (50-100, 100-500, 500-1000, 1000+).
+
+The default `truvari bench` settings were used, except for the following:
+
+- Sequence comparison was turned of (`--pctseq`) because the SV VCF is not guaranteed to have sequence-resolved calls.
+- The size of SVs was limited using the options `--sizemin 50` and `--sizemax 1_000_000`.
+- Only variants with `FILTER == PASS` are considered (`--passonly`).
+
+As per the default settings, SVs are considered the same if:
+
+- they have the same SVTYPE (`--typeignore False`)
+- the distance between their breakends is less than 500 bp (`--refdist 500`)
+- the size of the smaller SV is at least 70% the size of the larger SV (`--pctsize 0.7`)
 
 #### `04_compare`
 
