@@ -6,19 +6,32 @@ This repository contains a Snakemake workflow used to compare the performance of
 
 If NovoAlign performs well, an SV calling pipeline could potentially be incorporated into Novocraft's products.
 
-## Overview
+## Results
 
-### Datasets
+### Questions
+
+- Does Novoalign perform better overall?
+  | Aligner   | Caller | F1    | Recall | Precision |
+  | --------- | ------ | ----- | ------ | --------- |
+  | NovoAlign | Manta  | 0.572 | 0.420  | 0.895     |
+  | BWA-MEM2  | Manta  | 0.534 | 0.384  | 0.894     |
+  | NovoAlign | Delly  | 0.431 | 0.295  | 0.795     |
+  | BWA-MEM2  | Delly  | 0.371 | 0.246  | 0.753     |
+- Does Novoalign perform better for certain types or sizes of SVs?
+  - [ ] Group by type/size, calculate performance characteristics for each group, then compare.
+  - [ ] Generate Venn diagrams or upset plots to compare the calls made from each caller.
+
+## Datasets
 
 | Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illiumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
 
-### Methods
+## Methods
 
 The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config.yaml` file found in `config`. The workflow performs the following steps:
 
-#### `01_align`
+### `01_align`
 
 This step aligns the FASTQ reads for each sample listed in the "samples" section of the config file and produces a CRAM file for each aligner listed in the "aligners" section of the config file. This workflow currently works with the following aligners:
 
@@ -27,14 +40,9 @@ This step aligns the FASTQ reads for each sample listed in the "samples" section
 
 Other aligners can be added, provided that a samtools-indexed CRAM file is produced.
 
-<details>
-  <summary>Reference genomes</summary>
+The location of the reference genome can be specified in the config file. The various indexes required by the aligners must also be present in the same directory.
 
-  The location of the reference genome can be specified in the config file. The various indexes required by the aligners must also be present in the same directory.
-  
-</details>
-
-#### `02_call`
+### `02_call`
 
 This step takes each CRAM file and calls structural variants using each SV caller listed in the "callers" section of the config file. For each caller, the default settings recommended by the developer were used. This workflow currently works with the following callers:
 
@@ -46,7 +54,9 @@ This step takes each CRAM file and calls structural variants using each SV calle
 
 Other callers can be added, provided that they accept a CRAM file and a bgzipped, tabix-indexed SV VCF file is produced.
 
-#### `03_benchmark`
+The output is generally in the form `outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz`.
+
+### `03_benchmark`
 
 This step uses `truvari bench` to compare each SV VCF file to the truth set to calculate the performance characteristics (recall, precision, F1 score). This workflow calculates the overall performance characteristics, as well as the performance characteristics by SVTYPE (DEL, DUP, INS, INV) and SVLEN (50-100, 100-500, 500-1000, 1000+).
 
@@ -62,24 +72,11 @@ As per the default settings, SVs are considered the same if:
 - the distance between their breakends is less than 500 bp (`--refdist 500`)
 - the size of the smaller SV is at least 70% the size of the larger SV (`--pctsize 0.7`)
 
-#### `04_compare`
+The output is generally in the form `outputs/truvari/{sample}.{aligner}.{caller}[.{svtype|svlen}].truvari-bench.json`.
+
+### `04_compare`
 
 This step compares the performance characteristics for each aligner/caller pair.
-
-## Results
-
-### Questions
-
-- Does Novoalign perform better overall?
-  | Aligner   | Caller | F1    | Recall | Precision |
-  | --------- | ------ | ----- | ------ | --------- |
-  | NovoAlign | Manta  | 0.572 | 0.420  | 0.895     |
-  | BWA-MEM2  | Manta  | 0.534 | 0.384  | 0.894     |
-  | NovoAlign | Delly  | 0.431 | 0.295  | 0.795     |
-  | BWA-MEM2  | Delly  | 0.371 | 0.246  | 0.753     |
-- Does Novoalign perform better for certain types or sizes of SVs?
-  - [ ] Group by type/size, calculate performance characteristics for each group, then compare.
-  - [ ] Generate Venn diagrams or upset plots to compare the calls made from each caller.
 
 ## Acknowledgements
 
