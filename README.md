@@ -8,22 +8,36 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ## Overview
 
+### Datasets
+
+| Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illiumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
+
+### Methods
+
 The process has been implemented as a Snakemake workflow (found in `./workflow`) that performs the following steps:
 
-- [x] Align the FASTQ reads using the different aligners.
-- [x] Call the structural variants on the different BAM files using the SV caller(s).
-- [x] Compare the SV calls to the truth set to determine performance characteristics.
-- [x] Compare the results for each aligner.
+#### `01_align`
 
-For each step, the default/recommended settings were used according to the documentation.
+This step aligns the FASTQ reads for each sample listed in the "samples" section of the config file and produces a CRAM file for each aligner listed in the "aligners" section of the config file.
 
-## Datasets
+#### `02_call`
 
-- Sample: [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Whole-genome data, downsampled to ~30x PCR-free Illumina 150bp)
-- Reference: [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/)
-- SV truth set: [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/)
+This step takes each CRAM file and calls structural variants using each SV caller listed in the "callers" section of the config file. For each caller, the developer's default and/or recommended settings were used. This workflow currently works with the following callers:
 
-## Benchmarking
+- Delly
+- Manta
+
+#### `03_benchmark`
+
+This step uses `truvari bench` to compare each SV VCF file to the truth set to determine performance characteristics (recall, precision, F1 score).
+
+#### `04_compare`
+
+This step compares the performance characteristics for each aligner/caller pair.
+
+## Results
 
 ### Questions
 
