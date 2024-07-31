@@ -1,0 +1,62 @@
+2024-07-30 16:58:15,024 [INFO] Truvari v4.2.2
+2024-07-30 16:58:15,025 [INFO] Command /export/home/jeffrey/Documents/sv-benchmarking/workflow/sv_comparison_dir/.snakemake/conda/c5168ce2f37fd3d7122830d601b0fb5f_/bin/truvari bench --base /export/home/jeffrey/Documents/sv-benchmarking/resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.vcf.gz --comp ../../outputs/delly/HG002.bwa-mem2.delly.vcf.gz --output ../../outputs/truvari/HG002.bwa-mem2.delly/ --includebed ../../resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.bed --pctseq 0 --sizemin 50 --sizemax 1_000_000 --passonly
+2024-07-30 16:58:15,027 [INFO] Params:
+{
+    "base": "/export/home/jeffrey/Documents/sv-benchmarking/resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.vcf.gz",
+    "comp": "/export/home/jeffrey/Documents/sv-benchmarking/outputs/delly/HG002.bwa-mem2.delly.vcf.gz",
+    "output": "../../outputs/truvari/HG002.bwa-mem2.delly/",
+    "includebed": "/export/home/jeffrey/Documents/sv-benchmarking/resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.bed",
+    "extend": 0,
+    "debug": false,
+    "reference": null,
+    "refdist": 500,
+    "pctseq": 0.0,
+    "minhaplen": 50,
+    "pctsize": 0.7,
+    "pctovl": 0.0,
+    "typeignore": false,
+    "chunksize": 1000,
+    "bSample": "HG002",
+    "cSample": "HG002",
+    "dup_to_ins": false,
+    "sizemin": 50,
+    "sizefilt": 30,
+    "sizemax": 1000000,
+    "passonly": true,
+    "no_ref": false,
+    "pick": "single",
+    "check_monref": true,
+    "check_multi": true
+}
+2024-07-30 16:58:16,390 [INFO] Including 34830 bed regions
+2024-07-30 16:58:24,924 [INFO] Zipped 32291 variants Counter({'base': 20041, 'comp': 12250})
+2024-07-30 16:58:24,926 [INFO] 10214 chunks of 32291 variants Counter({'__filtered': 19421, 'base': 9646, 'comp': 3224})
+2024-07-30 16:58:28,554 [INFO] Stats: {
+    "TP-base": 2372,
+    "TP-comp": 2372,
+    "FP": 778,
+    "FN": 7274,
+    "precision": 0.753015873015873,
+    "recall": 0.24590503835786853,
+    "f1": 0.3707408565176617,
+    "base cnt": 9646,
+    "comp cnt": 3150,
+    "TP-comp_TP-gt": 2344,
+    "TP-comp_FP-gt": 28,
+    "TP-base_TP-gt": 2344,
+    "TP-base_FP-gt": 28,
+    "gt_concordance": 0.9881956155143339,
+    "gt_matrix": {
+        "(0, 1)": {
+            "(0, 1)": 1334,
+            "(1, 1)": 9,
+            "(0, 0)": 1
+        },
+        "(1, 1)": {
+            "(1, 1)": 1010,
+            "(0, 1)": 17,
+            "(0, 0)": 1
+        }
+    }
+}
+2024-07-30 16:58:28,555 [INFO] Finished bench

@@ -1,0 +1,19 @@
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[2024-Jul-29 18:51:49] delly call -g /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa -x ../../resources/delly/human.hg19.excl.tsv ../../resources/alignment-files/HG002.bwa-mem2.cram 
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[2024-Jul-29 18:51:53] Paired-end and split-read scanning
+[2024-Jul-29 19:11:41] Split-read clustering
+[2024-Jul-29 19:11:41] Paired-end clustering
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[2024-Jul-29 19:11:42] Split-read assembly
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[2024-Jul-29 19:34:33] Generate REF and ALT probes
+[2024-Jul-29 19:35:01] SV annotation
+[W::sam_hrecs_update_hashes] PG line with multiple ID tags. The first encountered was preferred - ID:bwa-mem2
+[2024-Jul-29 20:14:45] Genotyping
+[2024-Jul-29 20:14:46] Sample statistics
+Sample:HG002,ReadSize=148,Median=558,MAD=92,UniqueDiscordantPairs=1130691
+[2024-Jul-29 20:14:46] Done.

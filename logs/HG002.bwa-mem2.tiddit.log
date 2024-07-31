@@ -1,0 +1,10 @@
+/export/home/jeffrey/Documents/sv-benchmarking/workflow/sv_calling_dir/.snakemake/conda/f17c13b68665fe91b47eb3833fa04da5_/lib/python3.12/site-packages/joblib/parallel.py:1362: UserWarning: The backend class 'SequentialBackend' does not support timeout. You have set 'timeout=99999' in Parallel but the 'timeout' parameter will not be used.
+  warnings.warn(
+[M::main_ropebwt2] inserted 1504868708 symbols in 91.532 sec, 269.824 CPU sec
+[M::main_ropebwt2] constructed FM-index in 100.605 sec, 275.448 CPU sec
+[M::main_ropebwt2] symbol counts: ($, A, C, G, T, N) = (10099790, 406983793, 340400666, 340400666, 406983793, 0)
+[M::main_ropebwt2] rld: (tot, $, A, C, G, T, N) = (1504868708, 10099790, 406983793, 340400666, 340400666, 406983793, 0)
+[M::main] Version: r187
+[M::fm6_unitig] choose prime 123457
+[M::main] CMD: ropebwt2 -dNCr ../../outputs/tiddit/HG002.bwa-mem2.tiddit_tiddit/clips.fa
+[M::main] Real time: 107.325 sec; CPU: 281.844 sec

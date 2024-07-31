@@ -1,0 +1,77 @@
+[smoove] 2024/07/31 14:51:33 starting with version 0.2.8
+[smoove] 2024/07/31 14:51:33 calculating bam stats for 1 bams
+[smoove] 2024/07/31 14:51:42 done calculating bam stats
+[smoove]: ([E]lumpy-filter) 2024/07/31 14:59:29 [lumpy_filter] extracted splits and discordants from 681369100 total aligned reads
+[smoove]:2024/07/31 14:59:57 finished process: lumpy-filter (set -eu; lumpy_filter -f /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/G) in user-time:12m27.908s system-time:49.6s
+[smoove] 2024/07/31 15:00:52 removed 2832836 alignments out of 4132958 (68.54%) with low mapq, depth > 1000, or from excluded chroms from HG002-bwa-mem2.split.bam in 56 seconds
+[smoove] 2024/07/31 15:00:52 removed 435757 alignments out of 4132958 (10.54%) that were bad interchromosomals or flanked-splitters from HG002-bwa-mem2.split.bam
+[smoove] 2024/07/31 15:01:46 removed 8769953 alignments out of 12071294 (72.65%) with low mapq, depth > 1000, or from excluded chroms from HG002-bwa-mem2.disc.bam in 109 seconds
+[smoove] 2024/07/31 15:01:46 removed 326657 alignments out of 12071294 (2.71%) that were bad interchromosomals or flanked-splitters from HG002-bwa-mem2.disc.bam
+[smoove] 2024/07/31 15:02:02 kept 57857 putative orphans
+[smoove] 2024/07/31 15:02:02 removed 107923 split orphans in 50 seconds
+[smoove] 2024/07/31 15:02:06 removed 493471 singletons of 864365 reads (57.09%) from HG002-bwa-mem2.split.bam in 73 seconds
+[smoove] 2024/07/31 15:02:06 370894 reads (8.97%) of the original 4132958 remain from HG002-bwa-mem2.split.bam
+[smoove] 2024/07/31 15:02:28 kept 11411 putative orphans
+[smoove] 2024/07/31 15:02:28 removed 744628 discordant orphans in 30 seconds
+[smoove] 2024/07/31 15:02:37 removed 2582266 singletons and isolated interchromosomals of 2974684 reads (86.81%) from HG002-bwa-mem2.disc.bam in 51 seconds
+[smoove] 2024/07/31 15:02:37 392418 reads (3.25%) of the original 12071294 remain from HG002-bwa-mem2.disc.bam
+[smoove] 2024/07/31 15:02:37 starting lumpy
+[smoove] 2024/07/31 15:02:37 wrote lumpy command to ../../outputs/lumpy/HG002.bwa-mem2-lumpy-cmd.sh
+[smoove] 2024/07/31 15:02:37 writing sorted, indexed file to ../../outputs/lumpy/HG002.bwa-mem2-smoove.genotyped.vcf.gz
+[smoove] 2024/07/31 15:02:37 excluding variants with all unknown or homozygous reference genotypes
+[smoove] 2024/07/31 15:02:37 > gsort version 0.1.4
+[smoove] 2024/07/31 15:02:38 1	1000000
+[smoove] 2024/07/31 15:02:40 2	1000000
+[smoove] 2024/07/31 15:02:41 3	1000000
+[smoove] 2024/07/31 15:02:42 4	1000000
+[smoove] 2024/07/31 15:02:44 5	1000000
+[smoove] 2024/07/31 15:02:45 6	1000000
+[smoove] 2024/07/31 15:02:46 7	1000000
+[smoove] 2024/07/31 15:02:47 8	1000000
+[smoove] 2024/07/31 15:02:48 9	1000000
+[smoove] 2024/07/31 15:02:49 10	1000000
+[smoove] 2024/07/31 15:02:50 11	1000000
+[smoove] 2024/07/31 15:02:51 12	1000000
+[smoove] 2024/07/31 15:02:52 13	1000000
+13	2000000
+13	4000000
+13	8000000
+13	16000000
+13	32000000
+[smoove] 2024/07/31 15:02:53 14	1000000
+14	2000000
+14	4000000
+14	8000000
+14	16000000
+14	32000000
+[smoove] 2024/07/31 15:02:54 15	1000000
+15	2000000
+15	4000000
+15	8000000
+15	16000000
+15	32000000
+[smoove] 2024/07/31 15:02:54 16	1000000
+[smoove] 2024/07/31 15:02:55 17	1000000
+[smoove] 2024/07/31 15:02:56 18	1000000
+[smoove] 2024/07/31 15:02:56 19	1000000
+[smoove] 2024/07/31 15:02:57 20	1000000
+[smoove] 2024/07/31 15:02:58 21	1000000
+21	2000000
+21	4000000
+21	8000000
+21	16000000
+[smoove] 2024/07/31 15:02:58 22	1000000
+22	2000000
+22	4000000
+22	8000000
+22	16000000
+22	32000000
+[smoove] 2024/07/31 15:02:58 X	1000000
+[smoove] 2024/07/31 15:02:59 Y	1000000
+Y	2000000
+Y	4000000
+[smoove] 2024/07/31 15:04:08 [smoove] 2024/07/31 15:04:08 starting with version 0.2.8
+[smoove] 2024/07/31 15:04:08 [smoove] 2024/07/31 15:04:08 running duphold on 1 files in 40 processes
+[smoove] 2024/07/31 15:04:08 [smoove] 2024/07/31 15:04:08 could not import: bam_hdr_destroy
+[smoove] 2024/07/31 15:04:08 2024/07/31 15:04:08 exit status 1
+2024/07/31 15:04:08 exit status 1

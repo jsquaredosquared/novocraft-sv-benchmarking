@@ -1,0 +1,28 @@
+2024-07-31 15:01:42,753 [INFO   ]  [dysgu-run] Version: 1.6.6
+2024-07-31 15:01:42,798 [INFO   ]  run --clean -p 16 /export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa ../../outputs/dysgu/HG002.bwa-mem2.temp ../../resources/alignment-files/HG002.bwa-mem2.cram
+2024-07-31 15:01:42,799 [INFO   ]  Destination: ../../outputs/dysgu/HG002.bwa-mem2.temp
+2024-07-31 15:24:37,525 [INFO   ]  dysgu fetch ../../resources/alignment-files/HG002.bwa-mem2.cram written to ../../outputs/dysgu/HG002.bwa-mem2.temp/HG002.bwa-mem2.dysgu_reads.bam, n=17049859, time=0:22:54 h:m:s
+2024-07-31 15:24:37,528 [INFO   ]  Input file is: ../../outputs/dysgu/HG002.bwa-mem2.temp/HG002.bwa-mem2.dysgu_reads.bam
+2024-07-31 15:24:37,848 [INFO   ]  Sample name: HG002
+2024-07-31 15:24:37,848 [INFO   ]  Writing vcf to stdout
+2024-07-31 15:24:37,849 [INFO   ]  Running pipeline
+2024-07-31 15:24:37,870 [INFO   ]  Check PASS : Input BAM file has sorted header
+2024-07-31 15:24:40,343 [INFO   ]  Calculating insert size. Removed 48 outliers with insert size >= 1285.0
+2024-07-31 15:24:40,375 [INFO   ]  Inferred read length 148.0, insert median 557, insert stdev 159
+2024-07-31 15:24:40,378 [INFO   ]  Max clustering dist 1352
+2024-07-31 15:24:40,388 [INFO   ]  Building graph with clustering 1352 bp
+2024-07-31 15:34:01,902 [INFO   ]  Total input reads 17049859
+2024-07-31 15:34:10,951 [INFO   ]  Graph constructed
+2024-07-31 15:34:10,954 [INFO   ]  Minimum support 3
+2024-07-31 15:37:58,333 [INFO   ]  Number of components 8547137. N candidates 452686
+2024-07-31 15:39:17,324 [INFO   ]  Re-alignment of soft-clips done. N candidates 156514
+2024-07-31 15:39:26,119 [INFO   ]  Number of candidate SVs merged: 22953
+2024-07-31 15:39:26,120 [INFO   ]  Number of candidate SVs after merge: 133561
+2024-07-31 15:39:27,822 [INFO   ]  Loaded n=86 chromosome coverage arrays from ../../outputs/dysgu/HG002.bwa-mem2.temp
+2024-07-31 15:41:26,669 [INFO   ]  Loading Model: /export/home/jeffrey/Documents/sv-benchmarking/workflow/sv_calling_dir/.snakemake/conda/effd6ce432c8ad44f581e7cf56a49d15_/lib/python3.12/site-packages/dysgu/dysgu_model.1.pkl.gz
+/export/home/jeffrey/Documents/sv-benchmarking/workflow/sv_calling_dir/.snakemake/conda/effd6ce432c8ad44f581e7cf56a49d15_/lib/python3.12/site-packages/sklearn/base.py:376: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 0.23.2 when using version 1.5.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+2024-07-31 15:41:38,250 [INFO   ]  Model config: pe, diploid: True, contig features: True. N features: 43
+2024-07-31 15:42:06,565 [INFO   ]  dysgu call ../../outputs/dysgu/HG002.bwa-mem2.temp/HG002.bwa-mem2.dysgu_reads.bam complete, n=47659, time=0:17:29 h:m:s
+2024-07-31 15:42:08,188 [INFO   ]  dysgu run ../../resources/alignment-files/HG002.bwa-mem2.cram complete, time=0:40:25 h:m:s
