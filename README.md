@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains a Snakemake workflow used to compare the performance of SV callers when different short-read aligners are used. Currently it is being designed to compare SV calls by Manta on BAM files produced with NovoAlign and BWA-MEM2, although it could be extended to compare other SV callers or aligners.
+This repository contains a Snakemake workflow used to compare the performance of SV callers when different short-read aligners are used. Originally it was designed to compare SV calls by Manta on BAM files produced with NovoAlign and BWA-MEM2, although it can be extended to compare other SV callers or aligners.
 
 If NovoAlign performs well, an SV calling pipeline could potentially be incorporated into Novocraft's products.
 
@@ -16,35 +16,44 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ### Methods
 
-The benchmarking process has been implemented as a Snakemake workflow (found in `workflow`). The workflow can be configured by editing the `config.yaml` file found in `config`. The workflow performs the following steps:
+The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config.yaml` file found in `config`. The workflow performs the following steps:
 
 #### `01_align`
 
 This step aligns the FASTQ reads for each sample listed in the "samples" section of the config file and produces a CRAM file for each aligner listed in the "aligners" section of the config file. This workflow currently works with the following aligners:
 
-- BWA-MEM2
-- Novoalign
+- [x] [BWA-MEM2](https://github.com/bwa-mem2/bwa-mem2)
+- [x] [NovoAlign](https://www.novocraft.com/products/novoalign/)
 
 Other aligners can be added, provided that a samtools-indexed CRAM file is produced.
+
+<details>
+  <summary>Reference genomes</summary>
+
+  The location of the reference genome can be specified in the config file. The various indexes required by the aligners must also be present in the same directory.
+  
+</details>
 
 #### `02_call`
 
 This step takes each CRAM file and calls structural variants using each SV caller listed in the "callers" section of the config file. For each caller, the default settings recommended by the developer were used. This workflow currently works with the following callers:
 
-- Delly
-- Dysgu
-- Manta
+- [x] [Delly](https://github.com/dellytools/delly)
+- [x] [Dysgu](https://github.com/kcleal/dysgu)
+- [ ] Lumpy (via Smoove)
+- [x] [Manta](https://github.com/Illumina/manta)
+- [ ] TIDDIT
 
-Other callers can be added, provided that a bgzipped and tabix-indexed SV VCF file is produced.
+Other callers can be added, provided that they accept a CRAM file and a bgzipped, tabix-indexed SV VCF file is produced.
 
 #### `03_benchmark`
 
 This step uses `truvari bench` to compare each SV VCF file to the truth set to calculate the performance characteristics (recall, precision, F1 score). This workflow calculates the overall performance characteristics, as well as the performance characteristics by SVTYPE (DEL, DUP, INS, INV) and SVLEN (50-100, 100-500, 500-1000, 1000+).
 
-The default `truvari bench` settings were used, except for the following:
+The default `truvari bench` settings were used, with the following exceptions:
 
 - Sequence comparison was turned of (`--pctseq`) because the SV VCF is not guaranteed to have sequence-resolved calls.
-- The size of SVs was limited using the options `--sizemin 50` and `--sizemax 1_000_000`.
+- The size of SVs was limited using the options `--sizemin 50` (common definition of SV) and `--sizemax 1_000_000` (larger events are more likely to be erroneous).
 - Only variants with `FILTER == PASS` are considered (`--passonly`).
 
 As per the default settings, SVs are considered the same if:
@@ -62,13 +71,12 @@ This step compares the performance characteristics for each aligner/caller pair.
 ### Questions
 
 - Does Novoalign perform better overall?
-  - [ ] Calculate recall, precision, and F1 scores (3 s.f.).
-    | Aligner   | Caller | F1    | Recall | Precision |
-    | --------- | ------ | ----- | ------ | --------- |
-    | Novoalign | Manta  | 0.572 | 0.420  | 0.895     |
-    | Bwa-mem2  | Manta  | 0.534 | 0.384  | 0.894     |
-    | Novoalign | Delly  | 0.431 | 0.295  | 0.795     |
-    | Bwa-mem2  | Delly  | 0.371 | 0.246  | 0.753     |
+  | Aligner   | Caller | F1    | Recall | Precision |
+  | --------- | ------ | ----- | ------ | --------- |
+  | NovoAlign | Manta  | 0.572 | 0.420  | 0.895     |
+  | BWA-MEM2  | Manta  | 0.534 | 0.384  | 0.894     |
+  | NovoAlign | Delly  | 0.431 | 0.295  | 0.795     |
+  | BWA-MEM2  | Delly  | 0.371 | 0.246  | 0.753     |
 - Does Novoalign perform better for certain types or sizes of SVs?
   - [ ] Group by type/size, calculate performance characteristics for each group, then compare.
   - [ ] Generate Venn diagrams or upset plots to compare the calls made from each caller.
