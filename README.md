@@ -6,6 +6,12 @@ This repository contains a Snakemake workflow used to compare the performance of
 
 If NovoAlign performs well, an SV calling pipeline could potentially be incorporated into Novocraft's products.
 
+## Datasets
+
+| Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illiumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
+
 ## Results
 
 ### Questions
@@ -15,17 +21,13 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
   | --------- | ------ | ----- | ------ | --------- |
   | NovoAlign | Manta  | 0.572 | 0.420  | 0.895     |
   | BWA-MEM2  | Manta  | 0.534 | 0.384  | 0.894     |
+  | NovoAlign | Dysgu  | 0.512 | 0.419  | 0.660     |
+  | BWA-MEM2  | Dysgu  | 0.508 | 0.392  | 0.723     |
   | NovoAlign | Delly  | 0.431 | 0.295  | 0.795     |
   | BWA-MEM2  | Delly  | 0.371 | 0.246  | 0.753     |
 - Does Novoalign perform better for certain types or sizes of SVs?
   - [ ] Group by type/size, calculate performance characteristics for each group, then compare.
   - [ ] Generate Venn diagrams or upset plots to compare the calls made from each caller.
-
-## Datasets
-
-| Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illiumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
 
 ## Methods
 

@@ -11,11 +11,12 @@ samples:
 
 callers:
   - "delly"
-  - "dysgu"
+  # - "dysgu"
   - "lumpy"
   - "manta"
-  - "tiddit"
+  # - "tiddit"
   - "wham"
 
 truth_sets:
-  HG002: "/export/home/jeffrey/Documents/sv-benchmarking/resources/hg002-giab-benchmark/HG002_SVs_Tier1_v0.6.vcf.gz"
+  HG002: 
+    "/export/home/jeffrey/Documents/sv-benchmarking/resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.vcf.gz"
