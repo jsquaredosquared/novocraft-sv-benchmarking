@@ -2,16 +2,17 @@ configfile: "../../config/config.yaml"
 
 
 SAMPLES = config["samples"]
-CALLERS = config["callers"]
+# CALLERS = config["callers"]
+CALLERS = ["lumpy", "dysgu", "tiddit"]
 # ALIGNERS = config["aligners"]
-ALIGNERS = ["bwa-mem2"]  # Couldn't wait for novoalign to finish
+ALIGNERS = ["bwa-mem2", "novoalign"]
 REFERENCE = config["reference"]
 
 
 rule all:
     input:
         expand(
-            "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf",
+            "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz",
             sample=SAMPLES,
             aligner=ALIGNERS,
             caller=CALLERS,
@@ -42,7 +43,7 @@ rule run_manta:
     input:
         "../../outputs/manta/{sample}/{aligner}/runWorkflow.py",
     output:
-        "../../outputs/manta/{sample}.{aligner}.manta.vcf"
+        "../../outputs/manta/{sample}.{aligner}.manta.vcf",
     conda:
         "../envs/manta_env.yaml"
     log:
@@ -52,7 +53,7 @@ rule run_manta:
         "(python {input} "
         "-j {threads} "
         "-e jeffrey@novocraft.com "
-        "&& gunzip --stdout ../../outputs/manta/{wildcards.sample}/{wildcards.aligner}/diploidSV.vcf.gz > {output} "
+        "&& gunzip --stdout ../../outputs/manta/{wildcards.sample}/{wildcards.aligner}/results/variants/diploidSV.vcf.gz > {output} "
         ")2> {log}"
 
 
@@ -124,6 +125,7 @@ rule run_smoove:
         ")2> {log}"
 
 
+# WARNING: WHAM only works with BAMs?
 # TODO: Should you use the filter script provided by the devs?
 rule run_wham:
     input:
@@ -155,11 +157,26 @@ rule run_tiddit:
     conda:
         "../envs/tiddit_env.yaml"
     log:
-        "../../logs/{sample}.{aligner}.tiddit.log"
-    threads: 1
+        "../../logs/{sample}.{aligner}.tiddit.log",
+    threads: 8
     shell:
         "tiddit --sv --bam {input} "
         "-o ../../outputs/tiddit/{wildcards.sample}.{wildcards.aligner}.tiddit "
         f"--ref {REFERENCE} "
         "--threads {threads} "
         "2> {log}"
+
+
+rule bgzip_and_index_sv_vcf:
+    input:
+        "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf",
+    output:
+        multiext(
+            "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf", ".gz", ".gz.tbi"
+        ),
+    conda:
+        "../envs/tabix_env.yaml"
+    log:
+        "../../logs/{sample}.{aligner}.{caller}.bgzip_tabix.log",
+    shell:
+        "(bgzip {input} && tabix -p vcf {output[0]})2> {log}"

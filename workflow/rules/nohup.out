@@ -59,3 +59,8 @@ Submitted job 2 with external jobid 'Your job 2304 ("index_cram_file") has been 
 [Fri Jul 26 21:58:19 2024]
 Finished job 2.
 2 of 5 steps (40%) done
+Building DAG of jobs...
+LockException:
+Error: Directory cannot be locked. Please make sure that no other Snakemake process is trying to create the same files in the following directory:
+/export/home/jeffrey/Documents/sv-benchmarking/workflow/rules
+If you are sure that no other instances of snakemake are running on this directory, the remaining lock was likely caused by a kill signal or a power loss. It can be removed with the --unlock argument.
