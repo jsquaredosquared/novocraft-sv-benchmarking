@@ -1,3 +1,10 @@
 resources/*
 
 workflow/rules/.snakemake
+
+workflow/sv_calling_dir
+workflow/sv_comparison_dir
+
+outputs/
+
+logs/
