@@ -31,7 +31,9 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ## Methods
 
-The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config.yaml` file found in `config`. The workflow performs the following steps:
+The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config/config.yaml` file. Tools can be added if they are available in the working environment or can be accessed using Snakemake's conda or docker integrations. The command-line options for each tool can be modified accordingly.
+
+The default workflow performs the following steps:
 
 ### `01_align`
 
@@ -60,7 +62,7 @@ The output is generally in the form `outputs/{caller}/{sample}.{aligner}.{caller
 
 ### `03_benchmark`
 
-This step uses `truvari bench` to compare each SV VCF file to the truth set to calculate the performance characteristics (recall, precision, F1 score). This workflow calculates the overall performance characteristics, as well as the performance characteristics by SVTYPE (DEL, DUP, INS, INV) and SVLEN (50-100, 100-500, 500-1000, 1000+).
+This step uses `truvari bench` to compare each SV VCF file to the truth set to calculate the performance characteristics (recall, precision, F1 score). This workflow calculates the overall performance characteristics, as well as the performance characteristics by SVTYPE.
 
 The default `truvari bench` settings were used, with the following exceptions:
 

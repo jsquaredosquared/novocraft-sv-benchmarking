@@ -1,10 +1,13 @@
 reference: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa"
+# NOTE: indexes required by aligners must be present in same directory as reference.
 
 aligners: 
+# key = aligner, value = path to aligner (if not using conda/apptainer)
   bwa-mem2: ""
   novoalign: "/export/home/jeffrey/.local/bin/novocraft/novoalign"
 
 samples:
+# key = sample ID, value = list of paths to FASTQ files
   HG002:
     - "/export/home/jeffrey/Documents/sv-benchmarking/resources/samples/HG002/HG002_HiSeq30x_subsampled_R1.fastq.gz"
     - "/export/home/jeffrey/Documents/sv-benchmarking/resources/samples/HG002/HG002_HiSeq30x_subsampled_R2.fastq.gz"
