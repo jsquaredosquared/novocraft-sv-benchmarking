@@ -11,11 +11,11 @@ samples:
 
 callers:
   - "delly"
-  # - "dysgu"
-  - "lumpy"
+  - "dysgu"
+  # - "lumpy"
   - "manta"
   # - "tiddit"
-  - "wham"
+  # - "wham"
 
 truth_sets:
   HG002: 
