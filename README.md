@@ -31,7 +31,7 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ## Methods
 
-The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config/config.yaml` file. Tools can be added if they are available in the working environment or can be accessed using Snakemake's conda or docker integrations. The command-line options for each tool can be modified accordingly.
+The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config/config.yaml` file. Tools can be added if they are available in the working environment or can be accessed using Snakemake's conda or docker integrations. The command-line options for each tool can be modified according to your needs.
 
 The default workflow performs the following steps:
 
