@@ -6,7 +6,7 @@ REFERENCE = config["reference"]
 ALIGNERS = config["aligners"]
 CALLERS = config["callers"]
 
-CATEGORIES=["ALL", "DEL", "DUP", "INS", "INV", "50-99", "100-499", "500-999", "1000-1000000"]
+CATEGORIES=["ALL", "DEL", "INS"]
 
 
 rule all:
