@@ -22,6 +22,9 @@ def get_filter_expression(wildcards):
             return f'{int(min_len)}<=INFO["SVLEN"]<={int(max_len)}'
 
 
+# TODO: Add rule to split truth set(s) into categories.
+
+
 rule split_vcf_into_category:
     input:
         "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz"
