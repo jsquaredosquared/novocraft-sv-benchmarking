@@ -10,7 +10,7 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 | Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illiumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
+| [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
 
 ## Results
 
@@ -65,10 +65,10 @@ This step uses `truvari bench` to compare each SV VCF file to the truth set to c
 The default `truvari bench` settings were used, with the following exceptions:
 
 - Sequence comparison was turned of (`--pctseq`) because the SV VCF is not guaranteed to have sequence-resolved calls.
-- The size of SVs was limited using the options `--sizemin 50` (common definition of SV) and `--sizemax 1_000_000` (larger events are more likely to be erroneous).
+- The size of SVs was limited using the options `--sizemin 50` (common definition of SV) and `--sizemax 1_000_000` (because larger events are more likely to be erroneous).
 - Only variants with `FILTER == PASS` are considered (`--passonly`).
 
-As per the default settings, SVs are considered the same if:
+As per the default settings, 2 SVs are considered the same if:
 
 - they have the same SVTYPE (`--typeignore False`)
 - the distance between their breakends is less than 500 bp (`--refdist 500`)
