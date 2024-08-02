@@ -44,7 +44,7 @@ This step aligns the FASTQ reads for each sample listed in the "samples" section
 
 Other aligners can be added, provided that a samtools-indexed CRAM file is produced.
 
-The location of the reference genome can be specified in the config file. The various indexes required by the aligners must be produced using the relevant tools (e.g., `samtools index`, `novoindex`, `bwa-mem2 index`) and made available in the same directory.
+The location of the reference genome can be specified in the config file. The various indexes required by the aligners must be produced using the relevant tools (e.g., `samtools index`, `novoindex`, `bwa-mem2 index`) and made available in the same directory as the reference genome.
 
 ### `02_call`
 
