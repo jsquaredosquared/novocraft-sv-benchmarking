@@ -90,6 +90,10 @@ The output is generally in the form `outputs/truvari/{sample}.{aligner}.{caller}
 
 This step compares the performance characteristics for each aligner/caller pair.
 
+TODO
+
+- [ ] Automate table and visualization generation.
+
 ## Acknowledgements
 
 This work was part of my internship at [Novocraft](novocraft.com) (July 2024 - September 2024).
