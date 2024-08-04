@@ -68,6 +68,10 @@ Other callers can be added, provided that they accept a CRAM file and a bgzipped
 
 The output is generally in the form `outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz`.
 
+TODO
+
+- [ ] Make the workflow work with BAM files as well.
+
 ### `03_benchmark`
 
 This step uses `truvari bench` to compare each SV VCF file to the truth set to calculate the performance characteristics (recall, precision, F1 score). This workflow calculates the overall performance characteristics, as well as the performance characteristics by SVTYPE.
