@@ -35,6 +35,14 @@ The benchmarking process has been implemented as a Snakemake workflow (found in 
 
 The default workflow performs the following steps:
 
+### `00_prepare`
+
+TODO
+
+- [ ] Download and index reference genome(s).
+- [ ] Download FASTQ files.
+- [ ] Download and split SV truth sets.
+
 ### `01_align`
 
 This step aligns the FASTQ reads for each sample listed in the "samples" section of the config file and produces a CRAM file for each aligner listed in the "aligners" section of the config file. This workflow currently works with the following aligners:
