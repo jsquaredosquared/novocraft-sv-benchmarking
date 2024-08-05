@@ -88,6 +88,15 @@ rule download_hg002_tier1_sv_truth_set:
         ")2> {log}"
 
 
+rule download_delly_exclude:
+    output:
+        "../../resources/delly/human.hg19.excl.tsv"
+    log:
+        "../../logs/download_delly_exclude.log"
+    shell:
+        "wget https://github.com/dellytools/delly/raw/main/excludeTemplates/human.hg19.excl.tsv -O {output} 2> {log}"
+
+
 rule all:
     input:
         rules.download_reference.output,
