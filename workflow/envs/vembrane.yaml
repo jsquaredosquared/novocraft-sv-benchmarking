@@ -2,6 +2,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  - xonsh
   - vembrane
   - samtools
   - bcftools

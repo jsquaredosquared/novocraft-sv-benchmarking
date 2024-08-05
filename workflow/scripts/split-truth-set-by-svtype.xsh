@@ -1,4 +1,6 @@
-TRUTH_SET = "resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.vcf.gz"
+TRUTH_SET = $ARG1
 
-for svtype in ["DEL", "DUP", "INS", "INV"]:
-    $(vembrane filter -o @(TRUTH_SET.replace(".vcf", f"{svtype}.vcf")) @('INFO["SVTYPE"]=="{0}"'.format(svtype)) @(TRUTH_SET))
+for svtype in $ARG2.split(','):
+    out_file = TRUTH_SET.replace("ALL", svtype)
+    $(vembrane filter @('INFO["SVTYPE"]=="{0}"'.format(svtype)) @(TRUTH_SET) | bgzip -o @(out_file) -)
+    tabix -p vcf index @(out_file)
