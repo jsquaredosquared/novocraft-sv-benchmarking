@@ -6,10 +6,6 @@ This repository contains a Snakemake workflow used to compare the performance of
 
 If NovoAlign performs well, an SV calling pipeline could potentially be incorporated into Novocraft's products.
 
-## Datasets
-
-
-
 ## Results
 
 ### Questions
