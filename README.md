@@ -33,7 +33,7 @@ The default workflow performs the following steps:
 
 ### `00_prepare`
 
-This step downloads all the inputs required to run the default workflow:
+This step downloads all the inputs required to run the default workflow.
 
 | Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
