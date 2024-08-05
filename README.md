@@ -8,9 +8,7 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ## Datasets
 
-| Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
+
 
 ## Results
 
@@ -37,11 +35,15 @@ The default workflow performs the following steps:
 
 ### `00_prepare`
 
-TODO
+This step downloads all the inputs required to run the default workflow:
 
-- [ ] Download and index reference genome(s).
-- [ ] Download FASTQ files.
-- [ ] Download and split SV truth sets.
+| Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
+
+These files are downloaded to a folder called `resources`.
+
+If you are using your own datasets, you will need to download them yourself and edit the paths in the config file.
 
 ### `01_align`
 
