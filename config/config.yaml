@@ -1,6 +1,8 @@
 reference: "/export/home/jeffrey/Documents/sv-benchmarking/resources/reference-genome/GRCh37/hs37d5.fa"
 # NOTE: indexes required by aligners must be present in same directory as reference.
 
+novoindex: "/export/home/jeffrey/.local/bin/novocraft/novoindex"
+
 aligners: 
 # key = aligner, value = path to aligner (if not using conda/apptainer)
   bwa-mem2: ""
