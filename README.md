@@ -10,21 +10,17 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ## Results
 
-### Questions
+### Using NovoAlign improves SV recall and F1 on HG002 benchmark
 
-- Does Novoalign perform better overall?
-  ![Results plot](results/final_plot.svg)
-  |     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
-  | --: | :----- | :-------- | :----- | :----- | -------: | -------: | --------: |
-  |   0 | HG002  | novoalign | manta  | ALL    | 0.571953 | 0.420278 |  0.894923 |
-  |   1 | HG002  | bwa-mem2  | manta  | ALL    | 0.536922 | 0.383682 |  0.893961 |
-  |   2 | HG002  | novoalign | dysgu  | ALL    |  0.51246 |  0.41893 |  0.659755 |
-  |   3 | HG002  | bwa-mem2  | dysgu  | ALL    |  0.50857 | 0.392183 |  0.723189 |
-  |   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
-  |   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
-- Does Novoalign perform better for certain types or sizes of SVs?
-  - [ ] Group by type/size, calculate performance characteristics for each group, then compare.
-  - [ ] Generate Venn diagrams or upset plots to compare the calls made from each caller.
+![Results plot](results/final_plot.svg)
+|     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
+| --: | :----- | :-------- | :----- | :----- | -------: | -------: | --------: |
+|   0 | HG002  | novoalign | manta  | ALL    | 0.571953 | 0.420278 |  0.894923 |
+|   1 | HG002  | bwa-mem2  | manta  | ALL    | 0.536922 | 0.383682 |  0.893961 |
+|   2 | HG002  | novoalign | dysgu  | ALL    |  0.51246 |  0.41893 |  0.659755 |
+|   3 | HG002  | bwa-mem2  | dysgu  | ALL    |  0.50857 | 0.392183 |  0.723189 |
+|   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
+|   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
 
 ## Usage
 
