@@ -22,6 +22,8 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 |   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
 |   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
 
+_NOTE: HG002 SV benchmark only includes SV types DEL and INS._
+
 ## Usage
 
 The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config/config.yaml` file. Tools can be added if they are available in the working environment or can be accessed using Snakemake's conda or docker integrations. The command-line options for each tool can be modified according to your needs.
