@@ -90,9 +90,9 @@ rule download_hg002_tier1_sv_truth_set:
 
 rule download_delly_exclude:
     output:
-        "../../resources/delly/human.hg19.excl.tsv"
+        "../../resources/delly/human.hg19.excl.tsv",
     log:
-        "../../logs/download_delly_exclude.log"
+        "../../logs/download_delly_exclude.log",
     shell:
         "wget https://github.com/dellytools/delly/raw/main/excludeTemplates/human.hg19.excl.tsv -O {output} 2> {log}"
 
@@ -105,4 +105,5 @@ rule all:
         rules.bwamem_index_reference.output,
         rules.download_hg002_fastqs.output,
         rules.download_hg002_tier1_sv_truth_set.output,
+        rules.download_delly_exclude.output,
     default_target: True

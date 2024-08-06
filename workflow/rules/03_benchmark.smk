@@ -73,7 +73,9 @@ rule compare_to_truth_set:
     input:
         comp_file="../../outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz",
         index_file="../../outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz.tbi",
-        truth_set=lambda wildcards: TRUTH_SETS[f"{wildcards.sample}"].replace("ALL", f"{wildcards.svtype}"),
+        truth_set=lambda wildcards: TRUTH_SETS[f"{wildcards.sample}"].replace(
+            "ALL", f"{wildcards.svtype}"
+        ),
     output:
         "../../outputs/truvari/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.json",
     conda:
