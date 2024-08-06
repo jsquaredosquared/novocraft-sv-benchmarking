@@ -10,7 +10,7 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ## Results
 
-### Using NovoAlign improves SV recall and F1 on HG002 benchmark
+### Using NovoAlign improves recall and F1 on HG002 SV benchmark
 
 ![Results plot](results/final_plot.svg)
 |     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
