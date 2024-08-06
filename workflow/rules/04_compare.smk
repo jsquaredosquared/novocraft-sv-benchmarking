@@ -16,7 +16,7 @@ rule generate_plots:
             svtype=SVTYPES,
         ),
     output:
-        "test.txt",
+        "../../results/final_plot.svg",
     conda:
         "../envs/data_analysis.yaml"
     notebook:
