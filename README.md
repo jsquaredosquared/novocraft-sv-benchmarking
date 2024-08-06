@@ -13,7 +13,7 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 ### Questions
 
 - Does Novoalign perform better overall?
-  ![Results plot]("../../results/final_plot.svg")
+  ![Results plot](results/final_plot.svg)
   | Aligner   | Caller | F1    | Recall | Precision |
   | --------- | ------ | ----- | ------ | --------- |
   | NovoAlign | Manta  | 0.572 | 0.420  | 0.895     |
