@@ -14,14 +14,14 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 - Does Novoalign perform better overall?
   ![Results plot](results/final_plot.svg)
-  | Aligner   | Caller | F1    | Recall | Precision |
-  | --------- | ------ | ----- | ------ | --------- |
-  | NovoAlign | Manta  | 0.572 | 0.420  | 0.895     |
-  | BWA-MEM2  | Manta  | 0.534 | 0.384  | 0.894     |
-  | NovoAlign | Dysgu  | 0.512 | 0.419  | 0.660     |
-  | BWA-MEM2  | Dysgu  | 0.508 | 0.392  | 0.723     |
-  | NovoAlign | Delly  | 0.431 | 0.295  | 0.795     |
-  | BWA-MEM2  | Delly  | 0.371 | 0.246  | 0.753     |
+  |     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
+  | --: | :----- | :-------- | :----- | :----- | -------: | -------: | --------: |
+  |   0 | HG002  | novoalign | manta  | ALL    | 0.571953 | 0.420278 |  0.894923 |
+  |   1 | HG002  | bwa-mem2  | manta  | ALL    | 0.536922 | 0.383682 |  0.893961 |
+  |   2 | HG002  | novoalign | dysgu  | ALL    |  0.51246 |  0.41893 |  0.659755 |
+  |   3 | HG002  | bwa-mem2  | dysgu  | ALL    |  0.50857 | 0.392183 |  0.723189 |
+  |   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
+  |   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
 - Does Novoalign perform better for certain types or sizes of SVs?
   - [ ] Group by type/size, calculate performance characteristics for each group, then compare.
   - [ ] Generate Venn diagrams or upset plots to compare the calls made from each caller.
@@ -36,8 +36,8 @@ The default workflow performs the following steps:
 
 This step downloads all the inputs required to run the default workflow.
 
-| Sample                                                                                             | Reference                                                                                          | SV truth set                                                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Sample                                                                                            | Reference                                                                                          | SV truth set                                                                                                                        |
+| ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | [HG002](https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0) (Illumina WGS 150 bp PE 30x) | [GIAB GRCh37](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/) | [HG002 SVs Tier 1](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NIST_SV_v0.6/) |
 
 These files are downloaded to a folder called `resources`.
