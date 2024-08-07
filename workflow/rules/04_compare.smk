@@ -3,7 +3,7 @@ configfile: "../../config/config.yaml"
 
 rule all:
     input:
-        "test.txt",
+        "../../results/final_plot.svg",
 
 
 rule generate_plots:
