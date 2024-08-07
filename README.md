@@ -89,6 +89,10 @@ As per the default settings, 2 SVs are considered the same if:
 
 The output is generally in the form `outputs/truvari/{sample}.{aligner}.{caller}[.{svtype|svlen}].truvari-bench.json`.
 
+TODO
+
+- [ ] Consider adding `truvari refine` step.
+
 ### `04_compare`
 
 This step compares the performance characteristics for each aligner/caller pair.
