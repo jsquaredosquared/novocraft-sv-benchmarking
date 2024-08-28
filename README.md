@@ -8,22 +8,6 @@ This repository contains a Snakemake workflow used to compare the performance of
 
 If NovoAlign performs well, an SV calling pipeline could potentially be incorporated into Novocraft's products.
 
-## Results
-
-### Using NovoAlign improves recall and F1 on HG002 SV benchmark
-
-![Results plot](results/final_plot.svg)
-|     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
-| --: | :----- | :-------- | :----- | :----- | -------: | -------: | --------: |
-|   0 | HG002  | novoalign | manta  | ALL    | 0.571953 | 0.420278 |  0.894923 |
-|   1 | HG002  | bwa-mem2  | manta  | ALL    | 0.536922 | 0.383682 |  0.893961 |
-|   2 | HG002  | novoalign | dysgu  | ALL    |  0.51246 |  0.41893 |  0.659755 |
-|   3 | HG002  | bwa-mem2  | dysgu  | ALL    |  0.50857 | 0.392183 |  0.723189 |
-|   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
-|   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
-
-_NOTE: HG002 SV benchmark only includes SV types DEL and INS._
-
 ## Usage
 
 > Instructions on how to deploy this workflow can be found [here](https://snakemake.github.io/snakemake-workflow-catalog?repo=jsquaredosquared/novocraft-sv-benchmarking), or you can continue reading for more details.
@@ -102,6 +86,22 @@ This step compares the performance characteristics for each aligner/caller pair.
 TODO
 
 - [ ] Automate table and visualization generation.
+
+## Results (default workflow)
+
+### Using NovoAlign improves recall and F1 on HG002 SV benchmark
+
+![Results plot](results/final_plot.svg)
+|     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
+| --: | :----- | :-------- | :----- | :----- | -------: | -------: | --------: |
+|   0 | HG002  | novoalign | manta  | ALL    | 0.571953 | 0.420278 |  0.894923 |
+|   1 | HG002  | bwa-mem2  | manta  | ALL    | 0.536922 | 0.383682 |  0.893961 |
+|   2 | HG002  | novoalign | dysgu  | ALL    |  0.51246 |  0.41893 |  0.659755 |
+|   3 | HG002  | bwa-mem2  | dysgu  | ALL    |  0.50857 | 0.392183 |  0.723189 |
+|   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
+|   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
+
+_NOTE: HG002 SV benchmark only includes SV types DEL and INS._
 
 ## Acknowledgements
 
