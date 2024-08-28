@@ -83,9 +83,7 @@ TODO
 
 This step compares the performance characteristics for each aligner/caller pair.
 
-TODO
-
-- [ ] Automate table and visualization generation.
+The final image can be found in `results/final_plot.svg`.
 
 ## Results (default workflow)
 
