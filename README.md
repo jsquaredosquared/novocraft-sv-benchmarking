@@ -26,6 +26,8 @@ _NOTE: HG002 SV benchmark only includes SV types DEL and INS._
 
 ## Usage
 
+> Instructions on how to deploy this workflow can be found [here](https://snakemake.github.io/snakemake-workflow-catalog?repo=jsquaredosquared/novocraft-sv-benchmarking), or you can continue reading for more details.
+
 The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/rules`). The workflow can be configured by editing the `config/config.yaml` file. Tools can be added if they are available in the working environment or can be accessed using Snakemake's conda or docker integrations. The command-line options for each tool can be modified according to your needs.
 
 The default workflow performs the following steps:
