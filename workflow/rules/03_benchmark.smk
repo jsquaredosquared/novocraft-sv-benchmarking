@@ -1,22 +1,11 @@
-configfile: "../../config/config.yaml"
-
-
-SAMPLES = config["samples"]
-TRUTH_SETS = config["truth_sets"]
-REFERENCE = config["reference"]
-ALIGNERS = config["aligners"]
-CALLERS = config["callers"]
-SVTYPES = config["truth_set_svtypes"]
-
-
-rule all:
+rule generate_truvari_results:
     input:
         expand(
-            "../../outputs/truvari/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.json",
-            sample=SAMPLES,
-            aligner=ALIGNERS,
-            caller=CALLERS,
-            svtype=SVTYPES,
+            "outputs/truvari/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.json",
+            sample=config["samples"],
+            aligner=config["aligners"],
+            caller=config["callers"],
+            svtype=config["truth_set_svtypes"],
         ),
 
 
@@ -28,33 +17,38 @@ def get_filter_expression(wildcards):
             return f'{int(min_len)}<=INFO["SVLEN"]<={int(max_len)}'
 
 
-for sample in SAMPLES:
-
-    rule split_truth_set:
-        input:
-            truth_set=TRUTH_SETS[sample],
-        output:
-            [TRUTH_SETS[sample].replace("ALL", svtype) for svtype in SVTYPES],
-        conda:
-            "../envs/vembrane.yaml"
-        shell:
-            f"xonsh split-truth-set-by-svtype.xsh {{input}} {','.join(SVTYPES)}"
+rule split_truth_set:
+    input:
+        truth_set=lambda wildcards: config["truth_sets"][wildcards.sample],
+    output:
+        multiext(
+            "resources/sv-benchmarks/{sample}/{sample}.{svtype}_truth-set.vcf",
+            ".gz",
+            ".gz.tbi",
+        ),
+    conda:
+        "workflow/envs/vembrane.yaml"
+    shell:
+        """
+        (vembrane filter 'INFO["SVTYPE"]=="{wildcards.svtype}"' {input}
+        | bgzip -o {output[0]} -
+        && tabix -p vcf {output[0]}
+        )2> {log}
+        """
 
 
 rule split_vcf_into_svtype:
     input:
-        "../../outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz",
+        "outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz",
     output:
-        vcf_file=temp(
-            "../../outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz"
-        ),
+        vcf_file=temp("outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz"),
         index_file=temp(
-            "../../outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz.tbi"
+            "outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz.tbi"
         ),
     conda:
-        "../envs/vembrane.yaml"
+        "workflow/envs/vembrane.yaml"
     log:
-        "../../logs/{sample}.{aligner}.{caller}.split_vcf_{svtype}.log",
+        "logs/{sample}.{aligner}.{caller}.split_vcf_{svtype}.log",
     params:
         expression=get_filter_expression,
         options=lambda wildcards: (
@@ -71,20 +65,18 @@ rule split_vcf_into_svtype:
 
 rule compare_to_truth_set:
     input:
-        comp_file="../../outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz",
-        index_file="../../outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz.tbi",
-        truth_set=lambda wildcards: TRUTH_SETS[f"{wildcards.sample}"].replace(
-            "ALL", f"{wildcards.svtype}"
-        ),
+        comp_file="outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz",
+        index_file="outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz.tbi",
+        truth_set="resources/sv-benchmarks/{sample}/{sample}.{svtype}_truth-set.vcf.gz",
     output:
-        "../../outputs/truvari/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.json",
+        "outputs/truvari/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.json",
     conda:
-        "../envs/truvari.yaml"
+        "workflow/envs/truvari.yaml"
     log:
-        "../../logs/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.log",
+        "logs/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.log",
     params:
-        out_dir=lambda wildcards: f"../../outputs/truvari/{wildcards.sample}.{wildcards.aligner}.{wildcards.caller}.{wildcards.svtype}",
-        regions="../../resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.bed",
+        out_dir=lambda wildcards: f"outputs/truvari/{wildcards.sample}.{wildcards.aligner}.{wildcards.caller}.{wildcards.svtype}",
+        regions="resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.bed",
     shell:
         "(truvari bench "
         "--base {input.truth_set} "

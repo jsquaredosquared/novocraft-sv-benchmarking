@@ -1,4 +1,13 @@
+configfile: "config/config.yaml"
+
+
+include: "rules/00_prepare.smk"
 include: "rules/01_align.smk"
 include: "rules/02_call.smk"
 include: "rules/03_benchmark.smk"
 include: "rules/04_compare.smk"
+
+
+rule all:
+    input:
+        "results/final_plot.svg",
