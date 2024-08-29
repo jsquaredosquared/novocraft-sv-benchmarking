@@ -104,7 +104,7 @@ f1_contour_plot = alt.layer(
             .mark_line()
             .encode(
                 x=alt.X("recall"),
-                y=alt.Y("../../precision").scale(domain=(0.5, 1)),
+                y=alt.Y("precision").scale(domain=(0.5, 1)),
                 color=alt.value("#808080"),
                 tooltip=["f1"],
             )
