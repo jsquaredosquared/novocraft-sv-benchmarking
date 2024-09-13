@@ -28,9 +28,11 @@ rule split_truth_set:
         ),
     conda:
         "workflow/envs/vembrane.yaml"
+    params:
+        expression=get_filter_expression,
     shell:
         """
-        (vembrane filter 'INFO["SVTYPE"]=="{wildcards.svtype}"' {input}
+        (vembrane filter '{params.expression}' {input}
         | bgzip -o {output[0]} -
         && tabix -p vcf {output[0]}
         )2> {log}
