@@ -10,6 +10,6 @@ rule generate_plots:
     output:
         "results/final_plot.svg",
     conda:
-        "workflow/envs/data_analysis.yaml"
+        "../envs/data_analysis.yaml"
     script:
         "scripts/generate_plots.py"

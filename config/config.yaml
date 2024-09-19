@@ -18,6 +18,7 @@ callers:
 # Note: I could not get the last 3 to work :C
   - "delly"
   - "dysgu"
+  - "insurveyor"
   - "manta"
   # - "lumpy"
   # - "tiddit"

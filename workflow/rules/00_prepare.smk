@@ -3,12 +3,12 @@ novoindex = config["novoindex"]
 
 rule download_reference:
     output:
-        multiext("resources/reference-genome/GRCh37/hs37d5", ".fa.gz", ".fa"),
+        "resources/reference-genome/GRCh37/hs37d5.fa"
     log:
         "logs/download_giab_grch37_ref.log",
     shell:
-        "(wget ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/hs37d5.fa.gz -O {output} "
-        "&& gunzip {output} "
+        "(wget ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/hs37d5.fa.gz -O {output}.gz "
+        "&& gunzip {output}.gz "
         ")2> {log}"
 
 
@@ -31,7 +31,7 @@ rule samtools_index_reference:
     log:
         "logs/samtools_index_giab_grch37_ref.log",
     conda:
-        "workflow/envs/alignment.yaml"
+        "../envs/alignment.yaml"
     shell:
         "samtools faidx {input} 2> {log}"
 
@@ -51,7 +51,7 @@ rule bwamem_index_reference:
     log:
         "logs/bwamem_index_giab_grch37_ref.log",
     conda:
-        "workflow/envs/alignment.yaml"
+        "../envs/alignment.yaml"
     shell:
         "bwa-mem2 index {input} 2> {log}"
 

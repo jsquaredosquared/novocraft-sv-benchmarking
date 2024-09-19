@@ -27,7 +27,7 @@ rule split_truth_set:
             ".gz.tbi",
         ),
     conda:
-        "workflow/envs/vembrane.yaml"
+        "../envs/vembrane.yaml"
     params:
         expression=get_filter_expression,
     shell:
@@ -48,7 +48,7 @@ rule split_vcf_into_svtype:
             "outputs/{caller}/{sample}.{aligner}.{caller}.{svtype}.vcf.gz.tbi"
         ),
     conda:
-        "workflow/envs/vembrane.yaml"
+        "../envs/vembrane.yaml"
     log:
         "logs/{sample}.{aligner}.{caller}.split_vcf_{svtype}.log",
     params:
@@ -73,7 +73,7 @@ rule compare_to_truth_set:
     output:
         "outputs/truvari/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.json",
     conda:
-        "workflow/envs/truvari.yaml"
+        "../envs/truvari.yaml"
     log:
         "logs/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.log",
     params:

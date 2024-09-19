@@ -8,7 +8,7 @@ rule generate_cram_files:
             "resources/alignment-files/{sample}.{aligner}.{ext}",
             sample=config["samples"],
             aligner=config["aligners"],
-            ext=[".cram", ".cram.crai"]
+            ext=[".cram", ".cram.crai"],
         ),
 
 
@@ -20,7 +20,7 @@ rule align_with_bwa_mem2:
     log:
         "logs/align_{sample}_with_bwa-mem2.log",
     conda:
-        "workflow/envs/alignment_env.yaml"
+        "../envs/alignment.yaml"
     threads: 32
     shell:
         "(bwa-mem2 mem "
@@ -40,7 +40,7 @@ rule align_with_novoalign:
     log:
         "logs/align_{sample}_with_novoalign.log",
     conda:
-        "workflow/envs/alignment_env.yaml"
+        "../envs/alignment.yaml"
     threads: 48
     shell:
         "({config[aligners][novoalign]} -d {config[reference]}.nix -c 40 "
@@ -59,7 +59,7 @@ rule index_cram_file:
     log:
         "logs/index_{sample}.{aligner}_cram.log",
     conda:
-        "workflow/envs/alignment_env.yaml"
+        "../envs/alignment.yaml"
     threads: 8
     shell:
         "samtools index {input} -@ {threads}"
