@@ -1,9 +1,6 @@
-novoindex = config["novoindex"]
-
-
 rule download_reference:
     output:
-        "resources/reference-genome/GRCh37/hs37d5.fa"
+        "resources/reference-genome/GRCh37/hs37d5.fa",
     log:
         "logs/download_giab_grch37_ref.log",
     shell:
@@ -92,15 +89,3 @@ rule download_delly_exclude:
         "logs/download_delly_exclude.log",
     shell:
         "wget https://github.com/dellytools/delly/raw/main/excludeTemplates/human.hg19.excl.tsv -O {output} 2> {log}"
-
-
-# rule download_all:
-#     input:
-#         rules.download_reference.output,
-#         rules.novoindex_reference.output,
-#         rules.samtools_index_reference.output,
-#         rules.bwamem_index_reference.output,
-#         rules.download_hg002_fastqs.output,
-#         rules.download_hg002_tier1_sv_truth_set.output,
-#         rules.download_delly_exclude.output,
-#     default_target: True

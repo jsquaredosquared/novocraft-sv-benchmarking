@@ -18,8 +18,8 @@ rule generate_cram_files:
 
 rule align_with_bwa_mem2:
     input:
-        fastq = get_input_fastqs,
-        reference = get_reference
+        fastq=get_input_fastqs,
+        reference=get_reference,
     output:
         "resources/alignment-files/{sample}.bwa-mem2.cram",
     log:
@@ -39,8 +39,8 @@ rule align_with_bwa_mem2:
 
 rule align_with_novoalign:
     input:
-        fastq = get_input_fastqs,
-        reference = get_reference,
+        fastq=get_input_fastqs,
+        reference=get_reference,
     output:
         "resources/alignment-files/{sample}.novoalign.cram",
     log:
@@ -72,4 +72,3 @@ rule index_cram_file:
 
 
 # http://www.htslib.org/workflow/cram.html
-# TODO: Should you mark duplicates?

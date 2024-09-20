@@ -57,10 +57,11 @@ rule run_dysgu:
         "2> {log}"
 
 
-# No multithreading (https://github.com/dellytools/delly/issues/268#issuecomment-975385454).
+# NOTE: No multithreading (https://github.com/dellytools/delly/issues/268#issuecomment-975385454).
 rule run_delly:
     input:
         multiext("resources/alignment-files/{sample}.{aligner}", ".cram", ".cram.crai"),
+        "resources/delly/human.hg19.excl.tsv",
     output:
         "outputs/delly/{sample}.{aligner}.delly.vcf",
     conda:
@@ -68,11 +69,9 @@ rule run_delly:
     log:
         "logs/{sample}.{aligner}.delly.log",
     threads: 1
-    params:
-        exclude_regions="resources/delly/human.hg19.excl.tsv",
     shell:
         "delly call -g {config[reference]} "
-        "-x {params.exclude_regions} "
+        "-x {input[2]} "
         "{input[0]} > {output} "
         "2> {log}"
 
@@ -123,7 +122,7 @@ rule run_tiddit:
         "--threads {threads} "
         "2> {log}"
 
-
+# TODO: Since this only calls insertions, plot generation will need to be modified to accommodate this.
 rule run_insurveyor:
     input:
         multiext("resources/alignment-files/{sample}.{aligner}", ".cram", ".cram.crai"),
@@ -141,6 +140,8 @@ rule run_insurveyor:
     shell:
         """
         picard FixMateInformation -I {input[0]} -O {output.fixed_cram} -R {config[reference]} --CREATE_INDEX true
+
+        mkdir {params.workdir}
         
         insurveyor.py --threads {threads} {output.fixed_cram} {params.workdir} {config[reference]}
         
