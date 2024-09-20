@@ -15,11 +15,11 @@ samples:
     - "resources/samples/HG002/HG002_HiSeq30x_subsampled_R2.fastq.gz"
 
 callers:
-# Note: I could not get the last 3 to work :C
+# Note: I could only get the first 3 to run successfully :C
   - "delly"
   - "dysgu"
-  - "insurveyor"
   - "manta"
+  # - "insurveyor"
   # - "lumpy"
   # - "tiddit"
   # - "wham"

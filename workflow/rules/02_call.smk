@@ -77,6 +77,7 @@ rule run_delly:
         "2> {log}"
 
 
+# TODO: This didn't work. What was the problem again?
 rule run_smoove:
     input:
         multiext("resources/alignment-files/{sample}.{aligner}", ".cram", ".cram.crai"),
@@ -162,7 +163,7 @@ rule run_insurveyor:
     threads: 16
     shell:
         """
-        picard FixMateInformation -I {input[0]} -O {output.fixed_cram} -R {config[reference]}
+        picard FixMateInformation -I {input[0]} -O {output.fixed_cram} -R {config[reference]} --CREATE_INDEX true
         
         insurveyor.py --threads {threads} {output.fixed_cram} {params.workdir} {config[reference]}
         

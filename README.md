@@ -1,7 +1,6 @@
 # Novocraft SV benchmarking
 
-:warning: WORK IN PROGRESS
-
+> [!NOTE]
 > [Skip to results](#results-default-workflow)
 
 ## Introduction
@@ -12,6 +11,7 @@ If NovoAlign performs well, an SV calling pipeline could potentially be incorpor
 
 ## Usage
 
+> [!TIP]
 > Instructions on how to deploy this workflow can be found [here](https://snakemake.github.io/snakemake-workflow-catalog?repo=jsquaredosquared/novocraft-sv-benchmarking), or you can continue reading for more details.
 
 The benchmarking process has been implemented as a Snakemake workflow (found in `workflow/Snakefile`). The workflow can be configured by editing the `config/config.yaml` file. Tools can be added if they are available in the working environment or can be accessed using Snakemake's conda or docker integrations. The command-line options for each tool can be modified according to your needs.
@@ -47,17 +47,11 @@ This step takes each CRAM file and calls structural variants using each SV calle
 
 - [x] [Delly](https://github.com/dellytools/delly)
 - [x] [Dysgu](https://github.com/kcleal/dysgu)
-- [ ] Lumpy (via Smoove)
 - [x] [Manta](https://github.com/Illumina/manta)
-- [ ] TIDDIT
 
 Other callers can be added, provided that they accept a CRAM file and a bgzipped, tabix-indexed SV VCF file is produced.
 
 The output is generally in the form `outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz`.
-
-TODO
-
-- [ ] Make the workflow work with BAM files as well.
 
 ### `03_benchmark`
 
@@ -76,10 +70,6 @@ As per the default settings, 2 SVs are considered the same if:
 - the size of the smaller SV is at least 70% the size of the larger SV (`--pctsize 0.7`)
 
 The output is generally in the form `outputs/truvari/{sample}.{aligner}.{caller}[.{svtype|svlen}].truvari-bench.json`.
-
-TODO
-
-- [ ] Consider adding `truvari refine` step.
 
 ### `04_compare`
 
@@ -105,6 +95,4 @@ _NOTE: HG002 SV benchmark only includes SV types DEL and INS._
 
 ## Acknowledgements
 
-This work was part of my internship at [Novocraft](novocraft.com) (July 2024 - September 2024).
-
-## References
+This work was part of my internship at [Novocraft](www.novocraft.com) (July 2024 - September 2024).
