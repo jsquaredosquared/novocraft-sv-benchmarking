@@ -2,6 +2,10 @@ def get_input_fastqs(wildcards):
     return config["samples"][wildcards.sample]
 
 
+def get_reference(wildcards):
+    return config["reference"]
+
+
 rule generate_cram_files:
     input:
         expand(
@@ -14,7 +18,8 @@ rule generate_cram_files:
 
 rule align_with_bwa_mem2:
     input:
-        get_input_fastqs,
+        fastq = get_input_fastqs,
+        reference = get_reference
     output:
         "resources/alignment-files/{sample}.bwa-mem2.cram",
     log:
@@ -26,15 +31,16 @@ rule align_with_bwa_mem2:
         "(bwa-mem2 mem "
         "-t 24 "
         "-R '@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:ILLUMINA' "
-        "{config[reference]} {input} "
+        "{input.reference} {input.fastq} "
         "| samtools sort -@ 4 -O bam -l 0 -T /tmp - "
-        "| samtools view -@ 4 -T {config[reference]} -C -o {output} - "
+        "| samtools view -@ 4 -T {input.reference} -C -o {output} - "
         ")2> {log}"
 
 
 rule align_with_novoalign:
     input:
-        get_input_fastqs,
+        fastq = get_input_fastqs,
+        reference = get_reference,
     output:
         "resources/alignment-files/{sample}.novoalign.cram",
     log:
@@ -43,11 +49,11 @@ rule align_with_novoalign:
         "../envs/alignment.yaml"
     threads: 48
     shell:
-        "({config[aligners][novoalign]} -d {config[reference]}.nix -c 40 "
-        "-f {input} -o SAM "
+        "({config[aligners][novoalign]} -d {input.reference}.nix -c 40 "
+        "-f {input.fastq} -o SAM "
         "'@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:ILLUMINA' "
         "| samtools sort -@ 4 -O bam -l 0 -T /tmp - "
-        "| samtools view -@ 4 -T {config[reference]} -C -o {output} - "
+        "| samtools view -@ 4 -T {input.reference} -C -o {output} - "
         ")2> {log}"
 
 
