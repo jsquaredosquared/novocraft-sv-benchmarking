@@ -1,5 +1,5 @@
-reference: "resources/reference-genome/GRCh37/hs37d5.fa"
 # NOTE: indexes required by aligners must be present in same directory as reference.
+reference: "resources/reference-genome/GRCh37/hs37d5.fa"
 
 aligners: 
 # key = aligner, value = path to aligner (if not using conda/apptainer)
@@ -15,7 +15,7 @@ samples:
     - "resources/samples/HG002/HG002_HiSeq30x_subsampled_R2.fastq.gz"
 
 callers:
-# Note: I could only get the first 3 to run successfully :C
+# NOTE: I could only get the first 3 to run successfully :C
   - "delly"
   - "dysgu"
   - "manta"
@@ -29,6 +29,10 @@ truth_sets:
 # Must be renamed to end with ".ALL.vcf.gz".
   HG002: 
     "resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.ALL.vcf.gz"
+
+truth_set_regions:
+  HG002:
+    "resources/sv-benchmarks/HG002/HG002_SVs_Tier1_v0.6.ALL.bed"
 
 truth_set_svtypes:
   - "ALL"

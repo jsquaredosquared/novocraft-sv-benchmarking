@@ -3,5 +3,6 @@ channels:
   - bioconda
 dependencies:
   - vembrane
+  - tabix
   - samtools
   - bcftools

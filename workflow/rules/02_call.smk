@@ -31,7 +31,6 @@ rule run_manta:
     shell:
         "(python {input} "
         "-j {threads} "
-        "-e jeffrey@novocraft.com "
         "&& gunzip --stdout outputs/manta/{wildcards.sample}/{wildcards.aligner}/results/variants/diploidSV.vcf.gz > {output} "
         ")2> {log}"
 
@@ -49,7 +48,7 @@ rule run_dysgu:
     params:
         temp_dir="outputs/dysgu/{sample}.{aligner}.temp",
     shell:
-        "dysgu run --clean -p {threads} "
+        "dysgu run --overwrite --clean -p {threads} "
         "{config[reference]} "
         "{params.temp_dir} "
         "{input[0]} "
