@@ -1,14 +1,3 @@
-rule generate_truvari_results:
-    input:
-        expand(
-            "outputs/truvari/{sample}.{aligner}.{caller}.{svtype}.truvari-bench.json",
-            sample=config["samples"],
-            aligner=config["aligners"],
-            caller=config["callers"],
-            svtype=config["truth_set_svtypes"],
-        ),
-
-
 def get_filter_expression(wildcards):
     match wildcards.svtype.split("-"):
         case [svtype]:
@@ -17,7 +6,7 @@ def get_filter_expression(wildcards):
             return f'{int(min_len)}<=INFO["SVLEN"]<={int(max_len)}'
 
 
-rule split_truth_set:
+rule split_truth_set_by_svtype:
     input:
         truth_set=lambda wildcards: config["truth_sets"][wildcards.sample],
     output:
@@ -39,7 +28,7 @@ rule split_truth_set:
         """
 
 
-rule split_vcf_into_svtype:
+rule split_vcf_by_svtype:
     input:
         "outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz",
     output:

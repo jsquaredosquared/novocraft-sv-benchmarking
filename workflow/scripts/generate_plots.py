@@ -123,7 +123,6 @@ f1_labels = np.arange(0.1, 1.01, 0.1).round(1)
 precision_labels = [0.85] * len(f1_labels)
 
 # Need to find recall (x) coordinate for label.
-# Also differentiate to find appropriate angle.
 label_coords = (
     pl.DataFrame({"f1": f1_labels, "precision": precision_labels})
     .with_columns(
@@ -169,3 +168,5 @@ final_plot = (
 
 
 final_plot.save(snakemake.output)
+
+# endregion
