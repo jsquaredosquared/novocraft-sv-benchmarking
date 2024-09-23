@@ -49,7 +49,7 @@ This step takes each CRAM file and calls structural variants using each SV calle
 - [x] [Dysgu](https://github.com/kcleal/dysgu)
 - [x] [Manta](https://github.com/Illumina/manta)
 
-Other callers can be added, provided that they accept a CRAM file and prdocue a bgzipped, tabix-indexed SV VCF file.
+Other callers can be added, provided that they accept a CRAM file and produce a bgzipped, tabix-indexed SV VCF file.
 
 The output is generally in the form `outputs/{caller}/{sample}.{aligner}.{caller}.vcf.gz`.
 
