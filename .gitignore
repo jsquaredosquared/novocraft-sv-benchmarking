@@ -8,3 +8,5 @@ workflow/sv_comparison_dir
 outputs/
 
 logs/
+
+.snakemake
