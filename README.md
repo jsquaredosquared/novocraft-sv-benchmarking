@@ -59,7 +59,7 @@ This step uses `truvari bench` to compare each SV VCF file to the truth set to c
 
 The default `truvari bench` settings were used, with the following exceptions:
 
-- Sequence comparison was turned of (`--pctseq`) because the SV VCF is not guaranteed to have sequence-resolved calls.
+- Sequence comparison was turned off (`--pctseq`) because the SV VCF is not guaranteed to have sequence-resolved calls.
 - The size of SVs was limited using the options `--sizemin 50` (common definition of SV) and `--sizemax 1_000_000` (because larger events are more likely to be erroneous).
 - Only variants with `FILTER == PASS` are considered (`--passonly`).
 
