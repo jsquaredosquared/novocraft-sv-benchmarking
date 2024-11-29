@@ -1,7 +1,20 @@
 # Novocraft SV benchmarking
 
-> [!NOTE]
-> [Skip to results](#results-default-workflow)
+## Results (default workflow)
+
+### Using NovoAlign improves recall and F1 on HG002 SV benchmark
+
+![Results plot](results/final_plot.svg)
+|     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
+| --: | :----- | :-------- | :----- | :----- | -------: | -------: | --------: |
+|   0 | HG002  | novoalign | manta  | ALL    | 0.571953 | 0.420278 |  0.894923 |
+|   1 | HG002  | bwa-mem2  | manta  | ALL    | 0.536922 | 0.383682 |  0.893961 |
+|   2 | HG002  | novoalign | dysgu  | ALL    |  0.51246 |  0.41893 |  0.659755 |
+|   3 | HG002  | bwa-mem2  | dysgu  | ALL    |  0.50857 | 0.392183 |  0.723189 |
+|   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
+|   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
+
+_NOTE: HG002 SV benchmark only includes SV types DEL and INS._
 
 ## Introduction
 
@@ -76,22 +89,6 @@ The output is generally in the form `outputs/truvari/{sample}.{aligner}.{caller}
 This step compares the performance characteristics for each aligner/caller pair.
 
 The final image can be found in `results/final_plot.svg`.
-
-## Results (default workflow)
-
-### Using NovoAlign improves recall and F1 on HG002 SV benchmark
-
-![Results plot](results/final_plot.svg)
-|     | sample | aligner   | caller | svtype |       f1 |   recall | precision |
-| --: | :----- | :-------- | :----- | :----- | -------: | -------: | --------: |
-|   0 | HG002  | novoalign | manta  | ALL    | 0.571953 | 0.420278 |  0.894923 |
-|   1 | HG002  | bwa-mem2  | manta  | ALL    | 0.536922 | 0.383682 |  0.893961 |
-|   2 | HG002  | novoalign | dysgu  | ALL    |  0.51246 |  0.41893 |  0.659755 |
-|   3 | HG002  | bwa-mem2  | dysgu  | ALL    |  0.50857 | 0.392183 |  0.723189 |
-|   4 | HG002  | novoalign | delly  | ALL    | 0.430774 | 0.295459 |  0.794757 |
-|   5 | HG002  | bwa-mem2  | delly  | ALL    | 0.370741 | 0.245905 |  0.753016 |
-
-_NOTE: HG002 SV benchmark only includes SV types DEL and INS._
 
 ## Acknowledgements
 
